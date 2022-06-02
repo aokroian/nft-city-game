@@ -1,32 +1,60 @@
 using System;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class Building: Interactable
+public class Building : Interactable
 {
-        #region Inspector
+    #region Inspector
 
-        public GameObject buildingMenu;
+    [Space(15)] [Header("REFS")] [Space(5)]
+    public GameObject buildingMenu;
 
-        #endregion
-        
-        #region Fields
+    public GameObject infoPlate;
 
-        public bool isMenuOpen = false;
+    [Space(15)] [Header("EVENTS")] [Space(5)]
+    public UnityEvent onDisable;
 
-        #endregion
+    public UnityEvent onEnable;
+
+    #endregion
+
+    #region Fields
+
+    public bool isMenuOpen = false;
+
+    #endregion
 
 
-        #region MonoBehaviour
+    #region MonoBehaviour
 
-        private void Start()
-        {
-        }
+    private void Start()
+    {
+        onDisable ??= new UnityEvent();
+        onEnable ??= new UnityEvent();
+    }
 
-        public void ToggleBuildingMenu()
-        {
-                buildingMenu.SetActive(!isMenuOpen);
-                isMenuOpen = !isMenuOpen;
-        }
+    private new void  OnEnable()
+    {
+        base.OnEnable();
+        onEnable.Invoke();
+    }
 
-        #endregion
+    private new void OnDisable()
+    {
+        base.OnDisable();
+        onDisable.Invoke();
+    }
+
+    public void ToggleBuildingMenu()
+    {
+        buildingMenu.SetActive(!isMenuOpen);
+        isMenuOpen = !isMenuOpen;
+    }
+
+    public void CheckIsHovered()
+    {
+        infoPlate.SetActive(IsHovered());
+    }
+
+    #endregion
 }

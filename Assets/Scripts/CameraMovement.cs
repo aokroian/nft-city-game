@@ -83,7 +83,7 @@ public class CameraMovement : MonoBehaviour
         transform.position = Vector3.Lerp(currentPosition, _targetPosition, Time.deltaTime * movementSpeed);
         
         // event part
-        if (_mouseDeltaMagnitude >= 2f && _mousePressed)
+        if (_mouseDeltaMagnitude >= 0.7f && _mousePressed)
         {
             if (!_isMoving) onCameraStoppedMoving.Invoke(false);
             _isMoving = true;
