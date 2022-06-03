@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ServerApi : AbstractServerApi
+public class DummyApi : AbstractServerApi
 {
-    
 }
