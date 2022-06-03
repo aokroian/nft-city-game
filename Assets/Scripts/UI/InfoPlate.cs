@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class InfoPlate : MonoBehaviour
@@ -13,6 +14,7 @@ public class InfoPlate : MonoBehaviour
     public float noResizeDistToCamera = 10;
 
     [SerializeField] private RectTransform rectTransform;
+    [SerializeField] private TextMeshProUGUI textField;
 
     #endregion
 
@@ -30,6 +32,11 @@ public class InfoPlate : MonoBehaviour
         _camera = Camera.main;
         _startWorkingTime = Time.time;
         PositioningAndScaling();
+    }
+
+    public void SetText(string newText)
+    {
+        textField.text = newText;
     }
 
     private void OnEnable()
