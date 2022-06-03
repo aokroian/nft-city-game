@@ -5,5 +5,5 @@ using UnityEngine;
 
 public abstract class AbstractServerApi: MonoBehaviour
 {
-    public abstract void getHouseData(int houseId, Action<HouseDto> result, Action<ResponseError> error);
+    public abstract void GetHouseData(int houseId, Action<HouseDto> result, Action<ResponseError> error);
 }

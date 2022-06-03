@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class DummyApi : AbstractServerApi
 {
-    public override void getHouseData(int houseId, Action<HouseDto> result, Action<ResponseError> error)
+    public override void GetHouseData(int houseId, Action<HouseDto> result, Action<ResponseError> error)
     {
         var houseData = new HouseDto
         {
