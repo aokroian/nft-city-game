@@ -8,7 +8,7 @@ namespace DataClasses
     public class BuildingData
     {
         public BuildingData(int id = 0, bool isBought = false, HouseStatus status = HouseStatus.Good, float buildTimer = -1f, float upgradeTimer = -1f,
-            int citizensCount = 0, int tier = 0, float dailyClaim = 0f, float lastClaim = 0f, float totalClaim = 0f,
+            int citizensCount = 0, int tier = -1, float dailyClaim = 0f, float lastClaim = 0f, float totalClaim = 0f,
             int minClaim = 0, float vault = 0, float upgradeCost = 0)
         {
             this.id = id;

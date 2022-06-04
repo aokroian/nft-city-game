@@ -10,17 +10,6 @@ public class Resource: Interactable
 
         #region MonoBehaviour
 
-        private void Awake()
-        {
-                RenderInfoPlate();
-        }
-
-        public void RenderInfoPlate()
-        {
-                infoPlate.SetText($"{resourceAmount} {resourceType}");
-        }
-        
-
         public void CollectResource()
         {
                 Destroy(gameObject, 1f);

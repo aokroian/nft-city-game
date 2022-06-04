@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using Enums;
 using UnityEngine.Events;
@@ -30,7 +31,7 @@ public class DummyApi : AbstractServerApi
                 id = 0,
                 isBought = true,
                 status = HouseStatus.Good,
-                tier = 1,
+                tier = 0,
                 citizens = 1,
                 dailyclaim = 0.2345f,
                 lastClaim = 0.1234f,
@@ -43,8 +44,17 @@ public class DummyApi : AbstractServerApi
             new HouseDto
             {
                 id = 1,
-                isBought = false,
-                upgradeCost = 1.2f,
+                isBought = true,
+                status = HouseStatus.Good,
+                tier = 1,
+                citizens = 1,
+                dailyclaim = 0.2345f,
+                lastClaim = 0.1234f,
+                minClaim = 30,
+                totalClaim = 1.6789f,
+                vault = 13.52f,
+                upgradeCost = 3.0581f,
+                buildTimer = 5.0f
             },
             new HouseDto
             {
@@ -81,22 +91,11 @@ public class DummyApi : AbstractServerApi
 
     public override void GetHouseData(int houseId, Action<HouseDto> result, Action<ResponseError> error)
     {
-        var houseData = new HouseDto
+        if (fullSave.houses.Length > 0)
         {
-            id = houseId,
-            isBought = true,
-            status = HouseStatus.Good,
-            tier = 1,
-            citizens = 1,
-            dailyclaim = 0.2345f,
-            lastClaim = 0.1234f,
-            minClaim = 30,
-            totalClaim = 1.6789f,
-            vault = 13.52f,
-            upgradeCost = 5.0581f,
-            buildTimer = 5.0f
-        };
-        result(houseData);
+            var houseData = fullSave.houses.ToList().Find(houseDto => houseDto.id == houseId);
+            result(houseData);
+        }
     }
 
     public override void BuyOrUpgradeHouse(int houseId, Action<HouseDto> result, Action<ResponseError> error)

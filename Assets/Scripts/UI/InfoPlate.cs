@@ -34,11 +34,6 @@ public class InfoPlate : MonoBehaviour
         PositioningAndScaling();
     }
 
-    public void SetText(string newText)
-    {
-        textField.text = newText;
-    }
-
     private void OnEnable()
     {
         _startWorkingTime = Time.time;

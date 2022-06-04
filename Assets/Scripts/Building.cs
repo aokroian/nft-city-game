@@ -8,12 +8,14 @@ using UnityEngine.Events;
 public class Building : Interactable
 {
     #region Inspector
-    
+
     [Space(15)] [Header("SETTINGS")] [Space(5)]
     public int houseID;
-    
+
 
     [Space(15)] [Header("REFS")] [Space(5)]
+    public Transform visualsContainer;
+
     public GameObject buildingMenu;
 
     public GameObject infoPlate;
@@ -21,12 +23,11 @@ public class Building : Interactable
     public IntGameEvent requestHouseDataEvent;
 
     [Space(15)] [Header("INTERNAL EVENTS")] [Space(5)]
-
     public UnityEvent<BuildingData> onSetBuildingData;
 
     [Space(15)] [Header("HOUSE DATA DISPLAY")] [Space(5)]
     public BuildingData buildingData;
-    
+
     [Space(15)] [Header("OTHERS")] [Space(5)]
 
     #endregion
@@ -55,6 +56,11 @@ public class Building : Interactable
 
     public void SetBuildingData(HouseDto houseDto)
     {
+        if (houseDto == null)
+        {
+            Debug.LogWarning("house receiver null houseDto", this);
+            return;
+        }
         if (houseDto.id == houseID)
         {
             buildingData = new BuildingData()
@@ -75,22 +81,38 @@ public class Building : Interactable
             };
             onSetBuildingData.Invoke(buildingData);
         }
-        
     }
+
+    public void ReloadVisuals()
+    {
+        foreach (Transform t in visualsContainer)
+        {
+            t.gameObject.SetActive(t.name == "Tier" + (buildingData.tier + 1));
+        }
+    }
+    
+    
 
     public void SetFullSaveData(FullSaveDto fullSaveDto)
     {
+        if (fullSaveDto == null)
+        {
+            Debug.LogWarning("house receiver null fullSaveDto", this);
+            return;
+        }
         var houses = fullSaveDto.houses;
         foreach (var houseDto in houses)
         {
             if (houseDto.id == houseID)
             {
                 buildingData.id = houseDto.id;
+                buildingData.tier = houseDto.tier;
                 buildingData.isBought = houseDto.isBought;
                 buildingData.buildTimer = houseDto.buildTimer;
                 buildingData.upgradeTimer = houseDto.upgradeTimer;
             }
         }
+        onSetBuildingData.Invoke(buildingData);
     }
 
     public void ToggleBuildingMenu()
