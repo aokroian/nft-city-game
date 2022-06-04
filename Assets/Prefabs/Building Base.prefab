@@ -281,6 +281,7 @@ MonoBehaviour:
   stayAtWorldAnchor: 1
   noResizeDistToCamera: 100
   rectTransform: {fileID: 2946676170742369446}
+  textField: {fileID: 0}
 --- !u!1 &2664319425472449137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,6 +1449,7 @@ GameObject:
   - component: {fileID: 8280826538659688453}
   - component: {fileID: 8280826538659688454}
   - component: {fileID: 1774441954}
+  - component: {fileID: 4772156596486595650}
   m_Layer: 0
   m_Name: Building Base
   m_TagString: Untagged
@@ -1629,6 +1631,23 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &4772156596486595650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280826538659688450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a9fef84d98f44faac9c077ee071f2ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 0
+  houseStatus: 0
+  tier: 0
+  timer: 0
+  isBought: 0
 --- !u!1 &8331502157751056746
 GameObject:
   m_ObjectHideFlags: 0
