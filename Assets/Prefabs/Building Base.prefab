@@ -1449,7 +1449,6 @@ GameObject:
   - component: {fileID: 8280826538659688453}
   - component: {fileID: 8280826538659688454}
   - component: {fileID: 1774441954}
-  - component: {fileID: 4772156596486595650}
   m_Layer: 0
   m_Name: Building Base
   m_TagString: Untagged
@@ -1584,12 +1583,30 @@ MonoBehaviour:
           m_CallState: 2
   buildingMenu: {fileID: 1547615898692743873}
   infoPlate: {fileID: 1820898449011513576}
+  getHouseDataEvent: {fileID: 0}
   onDisable:
     m_PersistentCalls:
       m_Calls: []
   onEnable:
     m_PersistentCalls:
       m_Calls: []
+  onSetBuildingData:
+    m_PersistentCalls:
+      m_Calls: []
+  buildingData:
+    id: 0
+    isBought: 0
+    status: 0
+    buildTimer: 0
+    upgradeTimer: 0
+    citizensCount: 0
+    tier: 0
+    dailyClaim: 0
+    lastClaim: 0
+    totalClaim: 0
+    minClaim: 0
+    vault: 0
+    upgradeCost: 0
   isMenuOpen: 0
 --- !u!114 &1774441954
 MonoBehaviour:
@@ -1631,23 +1648,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &4772156596486595650
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8280826538659688450}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1a9fef84d98f44faac9c077ee071f2ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  id: 0
-  houseStatus: 0
-  tier: 0
-  timer: 0
-  isBought: 0
 --- !u!1 &8331502157751056746
 GameObject:
   m_ObjectHideFlags: 0

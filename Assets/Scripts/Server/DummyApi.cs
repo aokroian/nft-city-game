@@ -3,9 +3,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Enums;
+using UnityEngine.Events;
 
 public class DummyApi : AbstractServerApi
 {
+    public UnityEvent<FullSaveDto> onFullSaveLoaded;
+    public UnityEvent<HouseDto> onHouseDataLoaded;
+
+    public int loadCost => 100;
+
+    private void Awake()
+    {
+        onFullSaveLoaded ??= new UnityEvent<FullSaveDto>();
+        onHouseDataLoaded ??= new UnityEvent<HouseDto>();
+    }
+
+
     private FullSaveDto fullSave = new FullSaveDto
     {
         coins = 8.567f,
@@ -49,8 +62,17 @@ public class DummyApi : AbstractServerApi
                 buildTimer = 0f
             }
         }
-
     };
+
+    public void LoadFullSave()
+    {
+        LoadFullSave(dto => { onFullSaveLoaded.Invoke(dto); }, err => { });
+    }
+
+    public void GetHouseData(int houseId)
+    {
+        GetHouseData(houseId, dto => { onHouseDataLoaded.Invoke(dto); }, err => { });
+    }
 
     public override void LoadFullSave(Action<FullSaveDto> result, Action<ResponseError> error)
     {

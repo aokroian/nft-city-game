@@ -281,6 +281,7 @@ MonoBehaviour:
   stayAtWorldAnchor: 1
   noResizeDistToCamera: 100
   rectTransform: {fileID: 2946676170742369446}
+  textField: {fileID: 0}
 --- !u!1 &2664319425472449137
 GameObject:
   m_ObjectHideFlags: 0
@@ -1448,6 +1449,8 @@ GameObject:
   - component: {fileID: 8280826538659688453}
   - component: {fileID: 8280826538659688454}
   - component: {fileID: 1774441954}
+  - component: {fileID: 714511755}
+  - component: {fileID: 714511754}
   m_Layer: 0
   m_Name: Building Base
   m_TagString: Untagged
@@ -1502,6 +1505,18 @@ MonoBehaviour:
     onClick:
       m_PersistentCalls:
         m_Calls:
+        - m_Target: {fileID: 8280826538659688454}
+          m_TargetAssemblyTypeName: Building, Assembly-CSharp
+          m_MethodName: RequestHouseDataWithEvent
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
         - m_Target: {fileID: 8280826538659688454}
           m_TargetAssemblyTypeName: Building, Assembly-CSharp
           m_MethodName: ToggleBuildingMenu
@@ -1580,14 +1595,34 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  houseID: 1
   buildingMenu: {fileID: 1547615898692743873}
   infoPlate: {fileID: 1820898449011513576}
+  requestHouseDataEvent: {fileID: 11400000, guid: 4d59019e8c7174409b98926041a457c9,
+    type: 2}
   onDisable:
     m_PersistentCalls:
       m_Calls: []
   onEnable:
     m_PersistentCalls:
       m_Calls: []
+  onSetBuildingData:
+    m_PersistentCalls:
+      m_Calls: []
+  buildingData:
+    id: 0
+    isBought: 0
+    status: 0
+    buildTimer: 0
+    upgradeTimer: 0
+    citizensCount: 0
+    tier: 0
+    dailyClaim: 0
+    lastClaim: 0
+    totalClaim: 0
+    minClaim: 0
+    vault: 0
+    upgradeCost: 0
   isMenuOpen: 0
 --- !u!114 &1774441954
 MonoBehaviour:
@@ -1621,6 +1656,62 @@ MonoBehaviour:
         m_TargetAssemblyTypeName: Building, Assembly-CSharp
         m_MethodName: CheckIsHovered
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &714511755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280826538659688450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 183d8c8d34e84e7781ca3099898babde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventForListen: {fileID: 11400000, guid: 40652ba1cd20a474b8fdc5916ca0524c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8280826538659688454}
+        m_TargetAssemblyTypeName: Building, Assembly-CSharp
+        m_MethodName: SetBuildingData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &714511754
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8280826538659688450}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ac4ca463384d83aa48eca62cceee26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventForListen: {fileID: 11400000, guid: 4a3372581372a4b7088980127ed2a3e7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8280826538659688454}
+        m_TargetAssemblyTypeName: Building, Assembly-CSharp
+        m_MethodName: SetFullSaveData
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

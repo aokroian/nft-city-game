@@ -17,4 +17,5 @@ public class HouseDto
     public float vault;
     public float upgradeCost;
     public float buildTimer;
+    public float upgradeTimer;
 }
