@@ -47,8 +47,7 @@ MonoBehaviour:
   leftToSpawnCount: 18
   containerForSpawnedObjects: {fileID: 0}
   spawnPrefab: {fileID: 0}
-  randomSpawnPrefabs:
-  - {fileID: 0}
+  randomSpawnPrefabs: []
   minSpawnWait: 1
   maxSpawnWait: 3
   layersToCheckBeforeSpawn:

@@ -563,154 +563,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Server
       objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onFullSaveLoaded.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onHouseDataLoaded.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onFullSaveLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onHouseDataLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onFullSaveLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: 4a3372581372a4b7088980127ed2a3e7,
-        type: 2}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onHouseDataLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 11400000, guid: 40652ba1cd20a474b8fdc5916ca0524c,
-        type: 2}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onFullSaveLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onFullSaveLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Raise
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onHouseDataLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onHouseDataLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Raise
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onFullSaveLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Events.FullSaveDataEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onHouseDataLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Events.HouseDataEvent, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onFullSaveLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-        type: 3}
-      propertyPath: onHouseDataLoaded.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1cb115bb21624949967e622049c769c, type: 3}
---- !u!1 &1364493156 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1900465180559250854, guid: f1cb115bb21624949967e622049c769c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1364493155}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1364493157 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1900465180559250855, guid: f1cb115bb21624949967e622049c769c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1364493155}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364493156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cafec36fa8121848827be1424513150, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1364493158
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364493156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af714ac02bcd4761bab4db86a4be24b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventForListen: {fileID: 11400000, guid: 4d59019e8c7174409b98926041a457c9, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1364493157}
-        m_TargetAssemblyTypeName: DummyApi, Assembly-CSharp
-        m_MethodName: GetHouseData
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &1364493159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1364493156}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48e2df92db66aa74ab3d28f1e3353bce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  eventForListen: {fileID: 11400000, guid: 732e104ea10574bc3b68d565cb81cb95, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1364493157}
-        m_TargetAssemblyTypeName: DummyApi, Assembly-CSharp
-        m_MethodName: LoadFullSave
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1579343981
 GameObject:
   m_ObjectHideFlags: 0
@@ -907,11 +761,6 @@ PrefabInstance:
       propertyPath: containerForSpawnedObjects
       value: 
       objectReference: {fileID: 974380451}
-    - target: {fileID: 1424773723032563937, guid: c3c8dc15cd7164f619f113a33118394c,
-        type: 3}
-      propertyPath: randomSpawnPrefabs.Array.size
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1424773723032563938, guid: c3c8dc15cd7164f619f113a33118394c,
         type: 3}
       propertyPath: m_RootOrder
@@ -1119,18 +968,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2030072777, guid: bee4cabaffe814a78ac5e0399baa033c, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 70
-      objectReference: {fileID: 0}
-    - target: {fileID: 2030072777, guid: bee4cabaffe814a78ac5e0399baa033c, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2030072777, guid: bee4cabaffe814a78ac5e0399baa033c, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -70
-      objectReference: {fileID: 0}
     - target: {fileID: 8745722937494729292, guid: bee4cabaffe814a78ac5e0399baa033c,
         type: 3}
       propertyPath: m_Name

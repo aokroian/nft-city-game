@@ -4,6 +4,7 @@ using Events;
 using UnityEngine;
 using UnityEngine.Events;
 
+
 public class Building : Interactable
 {
     #region Inspector
@@ -19,17 +20,14 @@ public class Building : Interactable
 
     public IntGameEvent requestHouseDataEvent;
 
-    [Space(15)] [Header("EVENTS")] [Space(5)]
-    public UnityEvent onDisable;
-
-    public UnityEvent onEnable;
+    [Space(15)] [Header("INTERNAL EVENTS")] [Space(5)]
 
     public UnityEvent<BuildingData> onSetBuildingData;
 
     [Space(15)] [Header("HOUSE DATA DISPLAY")] [Space(5)]
     public BuildingData buildingData;
     
-    [Space(15)] [Header("others")] [Space(5)]
+    [Space(15)] [Header("OTHERS")] [Space(5)]
 
     #endregion
 
@@ -49,8 +47,8 @@ public class Building : Interactable
 
     private void Awake()
     {
-        onDisable ??= new UnityEvent();
-        onEnable ??= new UnityEvent();
+        // onDisable ??= new UnityEvent();
+        // onEnable ??= new UnityEvent();
         onSetBuildingData ??= new UnityEvent<BuildingData>();
         buildingData ??= new BuildingData();
     }
@@ -93,19 +91,6 @@ public class Building : Interactable
                 buildingData.upgradeTimer = houseDto.upgradeTimer;
             }
         }
-    }
-
-
-    private new void OnEnable()
-    {
-        base.OnEnable();
-        onEnable.Invoke();
-    }
-
-    private new void OnDisable()
-    {
-        base.OnDisable();
-        onDisable.Invoke();
     }
 
     public void ToggleBuildingMenu()
