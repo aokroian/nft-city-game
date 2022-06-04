@@ -4,19 +4,28 @@ using UnityEngine;
 public class Resource: Interactable
 {
         public ResourceType resourceType;
+        public int resourceAmount;
         [SerializeField] private InfoPlate infoPlate;
-        [SerializeField] private GameObject collectedSign;
+        [SerializeField] private InfoPlate collectedSign;
 
         #region MonoBehaviour
 
-        public void RenderInfoPlate()
+        private void Awake()
         {
+                RenderInfoPlate();
         }
 
-        public void RenderCollectedSign()
+        public void RenderInfoPlate()
         {
-                
+                infoPlate.SetText($"{resourceAmount} {resourceType}");
         }
+        
+
+        public void CollectResource()
+        {
+                Destroy(gameObject, 1f);
+        }
+        
 
         #endregion
 
