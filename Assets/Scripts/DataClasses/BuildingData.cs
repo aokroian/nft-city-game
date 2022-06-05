@@ -7,9 +7,11 @@ namespace DataClasses
     [Serializable]
     public class BuildingData
     {
-        public BuildingData(int id = 0, bool isBought = false, HouseStatus status = HouseStatus.Good, float buildTimer = -1f, float upgradeTimer = -1f,
+        public BuildingData(int id = 0, bool isBought = false, HouseStatus status = HouseStatus.Good,
+            float buildTimer = -1f, float upgradeTimer = -1f,
             int citizensCount = 0, int tier = -1, float dailyClaim = 0f, float lastClaim = 0f, float totalClaim = 0f,
-            int minClaim = 0, float vault = 0, float upgradeCost = 0)
+            int minClaim = 0, float vault = 0, float upgradeCost = 0, bool allowedToBuy = false,
+            bool allowedToUpgradeByCoins = false, bool allowedToUpgradeByResources = false, float buyCoinsCost = 0f)
         {
             this.id = id;
             this.isBought = isBought;
@@ -24,6 +26,10 @@ namespace DataClasses
             this.minClaim = minClaim;
             this.vault = vault;
             this.upgradeCost = upgradeCost;
+            this.allowedToBuy = allowedToBuy;
+            this.allowedToUpgradeByCoins = allowedToUpgradeByCoins;
+            this.allowedToUpgradeByResources = allowedToUpgradeByResources;
+            this.buyCoinsCost = buyCoinsCost;
         }
 
         public int id;
@@ -39,5 +45,9 @@ namespace DataClasses
         public int minClaim;
         public float vault;
         public float upgradeCost;
+        public bool allowedToBuy;
+        public bool allowedToUpgradeByResources;
+        public bool allowedToUpgradeByCoins;
+        public float buyCoinsCost;
     }
 }

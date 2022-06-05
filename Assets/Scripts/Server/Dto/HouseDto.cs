@@ -17,6 +17,10 @@ public class HouseDto
     public float vault;
     public float upgradeCost;
     public Dictionary<ResourceType, int> upgradeResourceCost;
+    public float buyCoinsCost;
     public float buildTimer;
     public float upgradeTimer;
+    public bool allowedToBuy;
+    public bool allowedToUpgradeByCoins;
+    public bool allowedToUpgradeByResources;
 }

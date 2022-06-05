@@ -1,7 +1,7 @@
-using System;
 using DataClasses;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace UI
 {
@@ -29,12 +29,17 @@ namespace UI
         [SerializeField] private TextMeshProUGUI minClaim;
         [SerializeField] private TextMeshProUGUI vault;
 
+        [SerializeField] private Button buyButton;
+        [SerializeField] private Button upgradeByCoinsButton;
+        [SerializeField] private Button upgradeByResourcesButton;
+        
         #endregion
 
 
         #region Fields
 
-        private BuildingData _data;
+        private BuildingData _buildingData;
+        private PlayerData _playerData;
 
         #endregion
 
@@ -43,25 +48,42 @@ namespace UI
         private void Start()
         {
             building ??= GetComponentInParent<Building>();
+            _playerData ??= new PlayerData();
+        }
+
+        public void SetPlayerData(FullSaveDto fullSaveDto)
+        {
+            _playerData = new PlayerData(fullSaveDto: fullSaveDto);
         }
 
         public void ReloadUI()
         {
-            _data = building.buildingData;
+            _buildingData = building.buildingData;
             // in world part
-            hoverPlate.text = $"House {_data?.tier} tier";
+            hoverPlate.text = $"House {_buildingData?.tier} tier";
 
             // menu part
-            menuTitle.text = $"House {_data?.tier} tier";
-            tier.text = $"Tier: {_data?.tier}";
-            status.text = $"Status: {_data?.status}";
-            citizensCount.text = $"Citizens inside: {_data?.citizensCount}";
-            dailyClaim.text = $"Daily claim: {_data?.dailyClaim:0.0000}";
-            lastClaim.text = $"Last claim: {_data?.lastClaim:0.0000}";
-            totalClaim.text = $"Total claim: {_data?.totalClaim:0.0000}";
-            minClaim.text = $"Min claim: {_data?.minClaim:0.0000}";
-            vault.text = $"Vault: {_data?.vault:0.0000}";
+            menuTitle.text = $"House {_buildingData?.tier} tier";
+            tier.text = $"Tier: {_buildingData?.tier}";
+            status.text = $"Status: {_buildingData?.status}";
+            citizensCount.text = $"Citizens inside: {_buildingData?.citizensCount}";
+            dailyClaim.text = $"Daily claim: {_buildingData?.dailyClaim:0.0000}";
+            lastClaim.text = $"Last claim: {_buildingData?.lastClaim:0.0000}";
+            totalClaim.text = $"Total claim: {_buildingData?.totalClaim:0.0000}";
+            minClaim.text = $"Min claim: {_buildingData?.minClaim:0.0000}";
+            vault.text = $"Vault: {_buildingData?.vault:0.0000}";
+            
+            // menu buttons 
+            buyButton.gameObject.SetActive(_buildingData is {isBought: false});
+            upgradeByCoinsButton.gameObject.SetActive(_buildingData is {isBought: true});
+            upgradeByResourcesButton.gameObject.SetActive(_buildingData is {isBought: true});
+
+            buyButton.interactable = _buildingData?.allowedToBuy ?? false;
+            upgradeByCoinsButton.interactable = _buildingData?.allowedToUpgradeByCoins ?? false;
+            upgradeByResourcesButton.interactable = _buildingData?.allowedToUpgradeByResources ?? false;
         }
+        
+        
 
         #endregion
     }
