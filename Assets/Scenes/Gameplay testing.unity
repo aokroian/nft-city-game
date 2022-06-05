@@ -968,6 +968,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2030072779, guid: bee4cabaffe814a78ac5e0399baa033c, type: 3}
+      propertyPath: m_WorldUpOverride
+      value: 
+      objectReference: {fileID: 877984067}
     - target: {fileID: 8745722937494729292, guid: bee4cabaffe814a78ac5e0399baa033c,
         type: 3}
       propertyPath: m_Name
