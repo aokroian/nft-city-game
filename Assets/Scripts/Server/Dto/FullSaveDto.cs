@@ -8,5 +8,6 @@ public class FullSaveDto
     public float coins;
     public int energy;
     public HouseDto[] houses;
-    public Dictionary<ResourceType, int> resources;
+    public Dictionary<ResourceType, int> mapResources;
+    public Dictionary<ResourceType, int> currentResources;
 }

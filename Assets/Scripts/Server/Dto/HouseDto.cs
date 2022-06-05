@@ -16,6 +16,7 @@ public class HouseDto
     public int minClaim;
     public float vault;
     public float upgradeCost;
+    public Dictionary<ResourceType, int> upgradeResourceCost;
     public float buildTimer;
     public float upgradeTimer;
 }

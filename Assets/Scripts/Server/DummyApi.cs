@@ -72,7 +72,7 @@ public class DummyApi : AbstractServerApi
                 buildTimer = 0f
             }
         },
-        resources = new Dictionary<ResourceType, int>
+        mapResources = new Dictionary<ResourceType, int>
         {
             {ResourceType.Stone, 4 },
             {ResourceType.Wood, 6 },
@@ -146,9 +146,9 @@ public class DummyApi : AbstractServerApi
     
     public override void CollectResource(ResourceType type, Action<bool> result, Action<ResponseError> error)
     {
-        if (fullSave.resources[type] > 0)
+        if (fullSave.mapResources[type] > 0)
         {
-            fullSave.resources[type]--;
+            fullSave.mapResources[type]--;
             result(true);
         }
         else

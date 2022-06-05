@@ -27,7 +27,7 @@ public class NewResourceSpawner : MonoBehaviour
 
     public void Spawn(FullSaveDto fullData)
     {
-        Spawn(fullData.resources);
+        Spawn(fullData.mapResources);
     }
 
     public void Spawn(Dictionary<ResourceType, int> resources)
