@@ -1,4 +1,5 @@
 using DataClasses;
+using Enums;
 using Events;
 using TMPro;
 using UnityEngine;
@@ -19,9 +20,6 @@ namespace UI
         [SerializeField] private IntGameEvent upgradeHouseWithCoinsEvent;
         [SerializeField] private IntGameEvent upgradeHouseWithResourcesEvent;
 
-        [SerializeField] private GameObject brokenIcon;
-        [SerializeField] private TextMeshProUGUI timerPlate;
-
         [Space(15)] [Header("MENU REFS")] [Space(5)] [SerializeField]
         private TextMeshProUGUI menuTitle;
 
@@ -37,7 +35,7 @@ namespace UI
         [SerializeField] private Button buyButton;
         [SerializeField] private Button upgradeByCoinsButton;
         [SerializeField] private Button upgradeByResourcesButton;
-        
+
         #endregion
 
 
@@ -66,6 +64,20 @@ namespace UI
             _buildingData = building.buildingData;
             // in world part
             hoverPlate.text = $"House {_buildingData?.tier} tier";
+            if (_buildingData?.buildTimer > 0)
+            {
+                hoverPlate.text += $"\n{_buildingData?.buildTimer:0} sec to build";
+            }
+
+            if (_buildingData?.upgradeTimer > 0)
+            {
+                hoverPlate.text += $"\n{_buildingData?.upgradeTimer:0} sec to upgrade";
+            }
+
+            // if (_buildingData?.status == HouseStatus.Bad)
+            // {
+            //     hoverPlate.text += "\n Broken";
+            // }
 
             // menu part
             menuTitle.text = $"House {_buildingData?.tier} tier";
@@ -77,11 +89,11 @@ namespace UI
             totalClaim.text = $"Total claim: {_buildingData?.totalClaim:0.0000}";
             minClaim.text = $"Min claim: {_buildingData?.minClaim:0.0000}";
             vault.text = $"Vault: {_buildingData?.vault:0.0000}";
-            
+
             // menu buttons 
             buyButton.gameObject.SetActive(_buildingData is {isBought: false});
-            upgradeByCoinsButton.gameObject.SetActive(_buildingData is {isBought: true});
-            upgradeByResourcesButton.gameObject.SetActive(_buildingData is {isBought: true});
+            upgradeByCoinsButton.gameObject.SetActive(_buildingData is {isBought: true, tier: < 3});
+            upgradeByResourcesButton.gameObject.SetActive(_buildingData is {isBought: true, tier: < 3});
 
             buyButton.interactable = _buildingData?.allowedToBuy ?? false;
             upgradeByCoinsButton.interactable = _buildingData?.allowedToUpgradeByCoins ?? false;
@@ -96,19 +108,18 @@ namespace UI
             _buildingData = building.buildingData;
             buyHouseEvent.Raise(_buildingData.id);
         }
-        
+
         public void RaiseUpgradeHouseWithCoinsEvent()
         {
             _buildingData = building.buildingData;
             upgradeHouseWithCoinsEvent.Raise(_buildingData.id);
         }
-        
+
         public void RaiseUpgradeHouseWithResourcesEvent()
         {
             _buildingData = building.buildingData;
             upgradeHouseWithResourcesEvent.Raise(_buildingData.id);
         }
-        
 
         #endregion
     }
