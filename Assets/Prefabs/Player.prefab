@@ -110,6 +110,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7685156385020122028}
   - component: {fileID: 7685156385020122029}
+  - component: {fileID: 1928018566}
+  - component: {fileID: 1928018567}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -151,3 +153,63 @@ MonoBehaviour:
   onSetPlayerData:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1928018566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685156385020122026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36ac4ca463384d83aa48eca62cceee26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventForListen: {fileID: 11400000, guid: 4a3372581372a4b7088980127ed2a3e7, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7685156385020122029}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: SetPlayerData
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &1928018567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685156385020122026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 791b3265f45b4971be2865684569549e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  triggerOnStart: 1
+  triggerOnEnable: 0
+  event:
+    name: Load Full Save Data
+    delay: 0
+    onDoEvent:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 11400000, guid: 732e104ea10574bc3b68d565cb81cb95, type: 2}
+          m_TargetAssemblyTypeName: Events.GameEvent, Assembly-CSharp
+          m_MethodName: Raise
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2

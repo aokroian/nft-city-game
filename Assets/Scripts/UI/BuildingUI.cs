@@ -1,4 +1,5 @@
 using DataClasses;
+using Events;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,10 @@ namespace UI
 
         [Space(15)] [Header("IN WORLD REFS")] [Space(5)] [SerializeField]
         private TextMeshProUGUI hoverPlate;
+
+        [SerializeField] private IntGameEvent buyHouseEvent;
+        [SerializeField] private IntGameEvent upgradeHouseWithCoinsEvent;
+        [SerializeField] private IntGameEvent upgradeHouseWithResourcesEvent;
 
         [SerializeField] private GameObject brokenIcon;
         [SerializeField] private TextMeshProUGUI timerPlate;
@@ -81,8 +86,28 @@ namespace UI
             buyButton.interactable = _buildingData?.allowedToBuy ?? false;
             upgradeByCoinsButton.interactable = _buildingData?.allowedToUpgradeByCoins ?? false;
             upgradeByResourcesButton.interactable = _buildingData?.allowedToUpgradeByResources ?? false;
+
+            buyButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
+                $"Buy {_buildingData?.buyCoinsCost:0.0000} coins";
+        }
+
+        public void RaiseBuyHouseEvent()
+        {
+            _buildingData = building.buildingData;
+            buyHouseEvent.Raise(_buildingData.id);
         }
         
+        public void RaiseUpgradeHouseWithCoinsEvent()
+        {
+            _buildingData = building.buildingData;
+            upgradeHouseWithCoinsEvent.Raise(_buildingData.id);
+        }
+        
+        public void RaiseUpgradeHouseWithResourcesEvent()
+        {
+            _buildingData = building.buildingData;
+            upgradeHouseWithResourcesEvent.Raise(_buildingData.id);
+        }
         
 
         #endregion

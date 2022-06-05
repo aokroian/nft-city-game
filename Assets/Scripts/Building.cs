@@ -63,22 +63,7 @@ public class Building : Interactable
         }
         if (houseDto.id == houseID)
         {
-            buildingData = new BuildingData()
-            {
-                id = houseDto.id,
-                isBought = houseDto.isBought,
-                status = houseDto.status,
-                buildTimer = houseDto.buildTimer,
-                upgradeTimer = houseDto.upgradeTimer,
-                citizensCount = houseDto.citizens,
-                tier = houseDto.tier,
-                dailyClaim = houseDto.dailyclaim,
-                lastClaim = houseDto.lastClaim,
-                totalClaim = houseDto.totalClaim,
-                minClaim = houseDto.minClaim,
-                vault = houseDto.vault,
-                upgradeCost = houseDto.upgradeCost
-            };
+            buildingData = new BuildingData(houseDto: houseDto);
             onSetBuildingData.Invoke(buildingData);
         }
     }
@@ -87,7 +72,7 @@ public class Building : Interactable
     {
         foreach (Transform t in visualsContainer)
         {
-            t.gameObject.SetActive(t.name == "Tier" + (buildingData.tier + 1));
+            t.gameObject.SetActive(t.name == "Tier" + (buildingData.tier));
         }
     }
     
