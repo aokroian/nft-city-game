@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 4460830111406213304}
   - component: {fileID: 4460830111406213310}
   - component: {fileID: 5693511479882952026}
+  - component: {fileID: 705599188}
   m_Layer: 0
   m_Name: ResourceStone
   m_TagString: Untagged
@@ -57,7 +58,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4460830111406213305}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 100, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -141,9 +142,28 @@ MonoBehaviour:
           m_CallState: 2
   resourceType: 1
   resourceAmount: 1
-  collectEvent: {fileID: 0}
+  apiProvider: {fileID: 0}
   infoPlate: {fileID: 4545898990854930615}
-  collectedSign: {fileID: 0}
+  infoPlateText: {fileID: 4545898991995828516}
+--- !u!114 &705599188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4460830111406213305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23b87c4059ce4c97a4d75ca0996b1cfc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  visualsToPunch: {fileID: 260674576016565612}
+  punchOnStart: 1
+  punchOnEnable: 0
+  punchMultiplier: 0.3
+  punchDuration: 0.4
+  punchVibrato: 10
+  punchElasticity: 1
 --- !u!1 &4489162927928102153
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +188,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4489162927928102153}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 18.3, z: 0}
+  m_LocalPosition: {x: 0, y: 10.96, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -378,6 +398,7 @@ GameObject:
   - component: {fileID: 4545898992747005472}
   - component: {fileID: 4545898992747005479}
   - component: {fileID: 4545898992747005478}
+  - component: {fileID: 3524546066665204173}
   m_Layer: 5
   m_Name: bg
   m_TagString: Untagged
@@ -444,6 +465,25 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3524546066665204173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4545898992747005477}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c89f2a5c87c64d1bb8cd19eb51e20ce2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expandOnEnable: 1
+  expandTime: 0.07
+  punchMultiplier: 0.2
+  punchDuration: 0.3
+  punchVibrato: 10
+  punchElasticity: 1
+  rectTransform: {fileID: 4545898992747005472}
 --- !u!1 &5023861946907618258
 GameObject:
   m_ObjectHideFlags: 0

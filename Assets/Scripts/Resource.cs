@@ -1,5 +1,7 @@
+using System;
 using Enums;
 using Events;
+using TMPro;
 using UnityEngine;
 
 public class Resource : Interactable
@@ -8,7 +10,7 @@ public class Resource : Interactable
     public int resourceAmount;
     public ServerApiProvider apiProvider;
     [SerializeField] private InfoPlate infoPlate;
-    [SerializeField] private InfoPlate collectedSign;
+    [SerializeField] private TextMeshProUGUI infoPlateText;
 
     #region MonoBehaviour
 
@@ -33,6 +35,11 @@ public class Resource : Interactable
             Debug.Log("Can't collect");
             // TODO: Message "can't collect"
         }
+    }
+
+    public void Start()
+    {
+        infoPlateText.text = $"{resourceType}";
     }
 
     #endregion
