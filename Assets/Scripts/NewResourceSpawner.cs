@@ -25,6 +25,8 @@ public class NewResourceSpawner : MonoBehaviour
 
     public UnityEvent<GameObject> onSpawned;
 
+    public ServerApiProvider apiProvider;
+
     public void Spawn(FullSaveDto fullData)
     {
         Spawn(fullData.mapResources);
@@ -64,6 +66,7 @@ public class NewResourceSpawner : MonoBehaviour
         {
             spawnedCopy.transform.position = randomPosition;
             spawnedCopy.name = spawnedCopy.name.Replace("(Clone)", "");
+            spawnedCopy.GetComponent<Resource>().apiProvider = apiProvider;
             onSpawned.Invoke(spawnedCopy);
             return true;
         }
