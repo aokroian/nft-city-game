@@ -23,7 +23,7 @@ public class DummyApi : AbstractServerApi
     private FullSaveDto fullSave = new FullSaveDto
     {
         coins = 8.567f,
-        energy = 55f,
+        energy = 55,
         houses = new HouseDto[]
         {
             new HouseDto
@@ -71,6 +71,12 @@ public class DummyApi : AbstractServerApi
                 upgradeCost = 5.0581f,
                 buildTimer = 0f
             }
+        },
+        resources = new Dictionary<ResourceType, int>
+        {
+            {ResourceType.Stone, 4 },
+            {ResourceType.Wood, 6 },
+            {ResourceType.Iron, 3 }
         }
     };
 
@@ -136,5 +142,28 @@ public class DummyApi : AbstractServerApi
             buildTimer = 5.0f
         };
         result(houseData);
+    }
+    
+    public override void CollectResource(ResourceType type, Action<bool> result, Action<ResponseError> error)
+    {
+        if (fullSave.resources[type] > 0)
+        {
+            fullSave.resources[type]--;
+            result(true);
+        }
+        else
+        {
+            result(false);
+        }
+    }
+
+    public override void GetCurrentEnergy(Action<int> result, Action<ResponseError> error)
+    {
+        result(fullSave.energy);
+    }
+
+    public override void GetCurrentCoins(Action<float> result, Action<ResponseError> error)
+    {
+        result(fullSave.coins);
     }
 }

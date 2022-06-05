@@ -4,6 +4,6 @@ namespace Enums
     {
         Wood,
         Stone,
-        Gold
+        Iron
     }
 }
