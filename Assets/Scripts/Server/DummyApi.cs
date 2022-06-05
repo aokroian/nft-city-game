@@ -56,6 +56,7 @@ namespace Server
                 if (houseDto.id == houseId && _fullSave.coins >= houseDto.buyCoinsCost && !houseDto.isBought)
                 {
                     houseDto.isBought = true;
+                    _fullSave.coins -= houseDto.buyCoinsCost;
                 }
             }
 
@@ -64,10 +65,9 @@ namespace Server
 
         public void UpgradeHouseWithCoins(int houseId)
         {
-            var newFullSave = _fullSave;
-            foreach (var houseDto in newFullSave.houses)
+            foreach (var houseDto in _fullSave.houses)
             {
-                if (houseDto.id == houseId && CheckIfAllowedToUpgradeByCoins(houseDto, newFullSave) &&
+                if (houseDto.id == houseId && CheckIfAllowedToUpgradeByCoins(houseDto, _fullSave) &&
                     houseDto.isBought)
                 {
                     houseDto.tier++;
@@ -75,39 +75,48 @@ namespace Server
                     houseDto.upgradeResourceCost[ResourceType.Iron] += 1;
                     houseDto.upgradeResourceCost[ResourceType.Wood] += 1;
                     houseDto.upgradeResourceCost[ResourceType.Stone] += 1;
-                    houseDto.allowedToUpgradeByCoins = CheckIfAllowedToUpgradeByCoins(houseDto, newFullSave);
+
+                    _fullSave.coins -= houseDto.upgradeCost;
+
+                    houseDto.allowedToUpgradeByCoins = CheckIfAllowedToUpgradeByCoins(houseDto, _fullSave);
                     houseDto.allowedToUpgradeByResources =
-                        CheckIfAllowedToUpgradeHouseByResources(houseDto, fullSaveDto: newFullSave);
+                        CheckIfAllowedToUpgradeHouseByResources(houseDto, fullSaveDto: _fullSave);
+                    
+                    BuyOrUpgradeHouse(houseId, dto => { }, error => { });
+                    LoadFullSave(_fullSave);
+                    GetHouseData(houseId);
                 }
             }
-
-            BuyOrUpgradeHouse(houseId, dto => { }, error => { });
-            LoadFullSave(newFullSave);
-            GetHouseData(houseId);
         }
 
         public void UpgradeHouseWithResources(int houseId)
         {
-            var newFullSave = _fullSave;
-            foreach (var houseDto in newFullSave.houses)
+            foreach (var houseDto in _fullSave.houses)
             {
                 if (houseDto.id == houseId &&
-                    CheckIfAllowedToUpgradeHouseByResources(houseDto, fullSaveDto: newFullSave) && houseDto.isBought)
+                    CheckIfAllowedToUpgradeHouseByResources(houseDto, fullSaveDto: _fullSave) && houseDto.isBought)
                 {
                     houseDto.tier++;
                     houseDto.upgradeCost++;
                     houseDto.upgradeResourceCost[ResourceType.Iron] += 1;
                     houseDto.upgradeResourceCost[ResourceType.Wood] += 1;
                     houseDto.upgradeResourceCost[ResourceType.Stone] += 1;
+
+                    
+                    _fullSave.currentResources[ResourceType.Iron] -= 1;
+                    _fullSave.currentResources[ResourceType.Wood] -= 1;
+                    _fullSave.currentResources[ResourceType.Stone] -= 1;
+
                     houseDto.allowedToUpgradeByResources =
-                        CheckIfAllowedToUpgradeHouseByResources(houseDto, fullSaveDto: newFullSave);
-                    houseDto.allowedToUpgradeByCoins = CheckIfAllowedToUpgradeByCoins(houseDto, newFullSave);
+                        CheckIfAllowedToUpgradeHouseByResources(houseDto, fullSaveDto: _fullSave);
+                    houseDto.allowedToUpgradeByCoins = CheckIfAllowedToUpgradeByCoins(houseDto, _fullSave);
+                    
+                    
+                    BuyOrUpgradeHouse(houseId, dto => { }, error => { });
+                    LoadFullSave(_fullSave);
+                    GetHouseData(houseId);
                 }
             }
-
-            BuyOrUpgradeHouse(houseId, dto => { }, error => { });
-            LoadFullSave(newFullSave);
-            GetHouseData(houseId);
         }
 
         #endregion
