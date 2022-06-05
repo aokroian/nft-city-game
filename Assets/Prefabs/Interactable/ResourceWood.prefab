@@ -67,6 +67,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ResourceWood
       objectReference: {fileID: 0}
+    - target: {fileID: 4808981045771300277, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
         type: 3}
       propertyPath: resourceType

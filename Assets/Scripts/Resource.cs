@@ -9,6 +9,8 @@ public class Resource : Interactable
     public ResourceType resourceType;
     public int resourceAmount;
     public ServerApiProvider apiProvider;
+
+    [SerializeField] private Transform visualsContainer;
     [SerializeField] private InfoPlate infoPlate;
     [SerializeField] private TextMeshProUGUI infoPlateText;
 
@@ -40,6 +42,15 @@ public class Resource : Interactable
     public void Start()
     {
         infoPlateText.text = $"{resourceType}";
+        ReloadVisuals();
+    }
+
+    private void ReloadVisuals()
+    {
+        foreach (Transform t in visualsContainer)
+        {
+            t.gameObject.SetActive(t.name == $"{resourceType}");
+        }
     }
 
     #endregion
