@@ -1,21 +1,40 @@
 using Enums;
+using Events;
 using UnityEngine;
 
-public class Resource: Interactable
+public class Resource : Interactable
 {
-        public ResourceType resourceType;
-        public int resourceAmount;
-        [SerializeField] private InfoPlate infoPlate;
-        [SerializeField] private InfoPlate collectedSign;
+    public ResourceType resourceType;
+    public int resourceAmount;
+    public ServerApiProvider apiProvider;
+    [SerializeField] private InfoPlate infoPlate;
+    [SerializeField] private InfoPlate collectedSign;
 
-        #region MonoBehaviour
+    #region MonoBehaviour
 
-        public void CollectResource()
+    public void CollectResource()
+    {
+        Debug.Log("collecting");
+        apiProvider.concreteApi.CollectResource(resourceType, CollectingResult, err =>
         {
-                Destroy(gameObject, 1f);
-        }
-        
+            Debug.Log("Collecting resource error");
+            // TODO: Err!
+        });
+    }
 
-        #endregion
+    public void CollectingResult(bool result)
+    {
+        if (result)
+        {
+            Destroy(gameObject, 1f);
+        }
+        else
+        {
+            Debug.Log("Can't collect");
+            // TODO: Message "can't collect"
+        }
+    }
+
+    #endregion
 
 }

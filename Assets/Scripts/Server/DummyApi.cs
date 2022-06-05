@@ -143,9 +143,11 @@ namespace Server
 
         public override void CollectResource(ResourceType type, Action<bool> result, Action<ResponseError> error)
         {
-            if (_fullSave.mapResources[type] > 0)
+            if (_fullSave.mapResources[type] > 0 && _fullSave.energy >= _fullSave.energyToCollect)
             {
                 _fullSave.mapResources[type]--;
+                _fullSave.energy -= _fullSave.energyToCollect;
+                _fullSave.currentResources[type]++;
                 result(true);
             }
             else
@@ -172,6 +174,7 @@ namespace Server
             {
                 coins = 10.567f,
                 energy = 55,
+                energyToCollect = 15,
                 houses = new HouseDto[3],
                 mapResources = new Dictionary<ResourceType, int>
                 {
