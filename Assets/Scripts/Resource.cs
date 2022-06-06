@@ -1,4 +1,5 @@
 using System;
+using DG.Tweening;
 using Enums;
 using Events;
 using TMPro;
@@ -14,7 +15,15 @@ public class Resource : Interactable
     [SerializeField] private InfoPlate infoPlate;
     [SerializeField] private TextMeshProUGUI infoPlateText;
 
+    [SerializeField] private GameObject resourceMenu;
+
     #region MonoBehaviour
+
+    #region Fields
+
+    public bool isMenuOpen = false;
+
+    #endregion
 
     public void CollectResource()
     {
@@ -30,6 +39,9 @@ public class Resource : Interactable
     {
         if (result)
         {
+            resourceMenu.SetActive(false);
+            infoPlate.Collected();
+            visualsContainer.GetComponentInChildren<MeshRenderer>(false).material.DOFade(0f, 1f);
             Destroy(gameObject, 1f);
         }
         else
@@ -51,6 +63,13 @@ public class Resource : Interactable
         {
             t.gameObject.SetActive(t.name == $"{resourceType}");
         }
+    }
+
+    public void ToggleMenuOpen()
+    {
+        resourceMenu.SetActive(!isMenuOpen);
+        isMenuOpen = !isMenuOpen;
+        enabled = !isMenuOpen;
     }
 
     #endregion

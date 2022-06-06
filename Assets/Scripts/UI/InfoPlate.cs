@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 
@@ -64,6 +65,14 @@ public class InfoPlate : MonoBehaviour
         Vector2 screenPos = _camera.WorldToScreenPoint(targetWorldPos);
         rectTransform.position = screenPos;
         rectTransform.localScale = new Vector3(scale, scale, scale);
+    }
+
+    public void Collected()
+    {
+        //textField.color = new Color(0.1f, 0.8f, 0f);
+        //rectTransform.DOAnchorPos(new Vector2(rectTransform.position.x, rectTransform.position.y + 20), 0.9f);
+        textField.DOColor(new Color(0.1f, 0.8f, 0f), 0.7f);
+        
     }
 
     #endregion
