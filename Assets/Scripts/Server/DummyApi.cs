@@ -119,6 +119,25 @@ namespace Server
             }
         }
 
+        public void ClaimHouseVault(int houseId)
+        {
+            foreach (var houseDto in _fullSave.houses)
+            {
+                if (houseDto.id == houseId &&
+                    CheckIfAllowedToClaim(houseDto) && houseDto.isBought)
+                {
+                    float receivedCoins = (float) (houseDto.dailyclaim * houseDto.vault * 0.01);
+                    houseDto.lastClaim = receivedCoins;
+                    houseDto.totalClaim += receivedCoins;
+                    _fullSave.coins += receivedCoins;
+                    houseDto.vault = 0;
+
+                    LoadFullSave(_fullSave);
+                    GetHouseData(houseId);
+                }
+            }
+        }
+
         #endregion
 
 
@@ -221,10 +240,10 @@ namespace Server
                 lastClaim = 0.1234f,
                 minClaim = 30,
                 totalClaim = 1.6789f,
-                vault = 13.52f,
+                vault = 35.52f,
                 upgradeCost = 3.0581f,
                 buyCoinsCost = 3.0581f,
-                buildTimer = 5.0f,
+                buildTimer = 0f,
             };
 
             var upgradeResourceCostDictionary = new Dictionary<ResourceType, int>
@@ -270,6 +289,11 @@ namespace Server
 
             if (houseDto.tier >= 3) isAllowed = false;
             return isAllowed;
+        }
+
+        private static bool CheckIfAllowedToClaim(HouseDto houseDto)
+        {
+            return houseDto.vault >= houseDto.minClaim;
         }
 
         #endregion

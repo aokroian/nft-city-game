@@ -19,6 +19,7 @@ namespace UI
         [SerializeField] private IntGameEvent buyHouseEvent;
         [SerializeField] private IntGameEvent upgradeHouseWithCoinsEvent;
         [SerializeField] private IntGameEvent upgradeHouseWithResourcesEvent;
+        [SerializeField] private IntGameEvent claimHouseVaultEvent;
 
         [Space(15)] [Header("MENU REFS")] [Space(5)] [SerializeField]
         private TextMeshProUGUI menuTitle;
@@ -31,6 +32,9 @@ namespace UI
         [SerializeField] private TextMeshProUGUI totalClaim;
         [SerializeField] private TextMeshProUGUI minClaim;
         [SerializeField] private TextMeshProUGUI vault;
+        [SerializeField] private Slider vaultSlider;
+
+        [SerializeField] private Button claimButton;
 
         [SerializeField] private Button buyButton;
         [SerializeField] private Button upgradeByCoinsButton;
@@ -88,9 +92,14 @@ namespace UI
             lastClaim.text = $"Last claim: {_buildingData?.lastClaim:0.0000}";
             totalClaim.text = $"Total claim: {_buildingData?.totalClaim:0.0000}";
             minClaim.text = $"Min claim: {_buildingData?.minClaim:0.0000}";
-            vault.text = $"Vault: {_buildingData?.vault:0.0000}";
+            vault.text = $"Vault: {_buildingData?.vault:0.00}%";
+            if (_buildingData != null)
+            {
+                vaultSlider.value = _buildingData.vault;
+            }
 
             // menu buttons 
+            claimButton.gameObject.SetActive(_buildingData is {isBought: true} && _buildingData.vault >= _buildingData.minClaim);
             buyButton.gameObject.SetActive(_buildingData is {isBought: false});
             upgradeByCoinsButton.gameObject.SetActive(_buildingData is {isBought: true, tier: < 3});
             upgradeByResourcesButton.gameObject.SetActive(_buildingData is {isBought: true, tier: < 3});
@@ -119,6 +128,12 @@ namespace UI
         {
             _buildingData = building.buildingData;
             upgradeHouseWithResourcesEvent.Raise(_buildingData.id);
+        }
+
+        public void RaiseClaimHouseVaultEvent()
+        {
+            _buildingData = building.buildingData;
+            claimHouseVaultEvent.Raise(_buildingData.id);
         }
 
         #endregion

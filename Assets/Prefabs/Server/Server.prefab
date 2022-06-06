@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 836018050}
   - component: {fileID: 836018051}
   - component: {fileID: 836018052}
+  - component: {fileID: 427204770423940703}
   m_Layer: 0
   m_Name: Server
   m_TagString: Untagged
@@ -224,6 +225,34 @@ MonoBehaviour:
       - m_Target: {fileID: 1900465180559250855}
         m_TargetAssemblyTypeName: Server.DummyApi, Assembly-CSharp
         m_MethodName: BuyHouse
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &427204770423940703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1900465180559250854}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af714ac02bcd4761bab4db86a4be24b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventForListen: {fileID: 11400000, guid: 04ff269907041184a9f9f43e69d96325, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1900465180559250855}
+        m_TargetAssemblyTypeName: Server.DummyApi, Assembly-CSharp
+        m_MethodName: ClaimHouseVault
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
