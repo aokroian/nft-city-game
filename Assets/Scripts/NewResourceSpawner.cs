@@ -34,8 +34,9 @@ public class NewResourceSpawner : MonoBehaviour
 
     public void Spawn(Dictionary<ResourceType, int> resources)
     {
-        Debug.Log("Spawning " + resources);
-        foreach (var res in resources)
+        var resourcesToSpawn = getUnspawnedResourcesCount(resources);
+        Debug.Log("Spawning " + resourcesToSpawn);
+        foreach (var res in resourcesToSpawn)
         {
             for (int i = 0; i < res.Value; i ++)
             {
@@ -47,8 +48,17 @@ public class NewResourceSpawner : MonoBehaviour
         }
     }
 
+    private Dictionary<ResourceType, int> getUnspawnedResourcesCount(Dictionary<ResourceType, int> countShouldBe)
+    {
+        foreach (var item in containerForSpawnedObjects.GetComponentsInChildren<Resource>(false))
+        {
+            countShouldBe[item.resourceType]--;
+        }
+        return countShouldBe;
+    }
+
     // TODO: Rewrite without useless instantiations!!1
-    public bool SpawnSingle(ResourceType type, GameObject prefab)
+    private bool SpawnSingle(ResourceType type, GameObject prefab)
     {
         var randX = Random.Range(xAxisBounds.x, xAxisBounds.y);
         var randZ = Random.Range(zAxisBounds.x, zAxisBounds.y);
