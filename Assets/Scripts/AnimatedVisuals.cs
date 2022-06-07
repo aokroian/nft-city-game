@@ -15,7 +15,11 @@ public class AnimatedVisuals : MonoBehaviour
 
     public void PunchVisuals()
     {
-        visualsToPunch.DOPunchScale(new Vector3(0.07f, punchMultiplier, 0.07f), punchDuration, punchVibrato, punchElasticity);
+        visualsToPunch.DOPunchScale(new Vector3(0.07f, punchMultiplier, 0.07f), punchDuration, punchVibrato, punchElasticity).OnComplete(
+            () =>
+            {
+                visualsToPunch.DOScale(Vector3.one, 0.2f);
+            });
     }
 
     private void OnEnable()

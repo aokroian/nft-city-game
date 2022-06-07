@@ -27,7 +27,11 @@ namespace UI
                 rectTransform.localScale = Vector3.zero;
                 rectTransform.DOScale(Vector3.one, expandTime).OnComplete(() =>
                 {
-                    rectTransform.DOPunchScale(Vector3.one * punchMultiplier, punchDuration, punchVibrato, punchElasticity);
+                    rectTransform.DOPunchScale(Vector3.one * punchMultiplier, punchDuration, punchVibrato, punchElasticity).OnComplete(
+                        () =>
+                        {
+                            rectTransform.DOScale(Vector3.one, 0.2f);
+                        });
                 });
 
             }
