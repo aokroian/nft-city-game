@@ -112,6 +112,47 @@ PrefabInstance:
       propertyPath: resourceType
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
+      value: 
+      objectReference: {fileID: 11400000, guid: 748c9f5f4d5ab458e979acee70eb49a6,
+        type: 2}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: Events.AudioClipGameEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: c7e01985a83d64956bc8e9076fbe52ed, type: 3}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.AudioClip, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8123743748475645647, guid: 5028585d6a00248d49ca06153e49d65c,
         type: 3}
       propertyPath: m_LocalScale.x

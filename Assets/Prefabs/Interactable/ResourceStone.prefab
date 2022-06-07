@@ -553,6 +553,19 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+        - m_Target: {fileID: 11400000, guid: 748c9f5f4d5ab458e979acee70eb49a6, type: 2}
+          m_TargetAssemblyTypeName: Events.AudioClipGameEvent, Assembly-CSharp
+          m_MethodName: Raise
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 8300000, guid: d15dfabe233324a21a37c2d1da8ff637,
+              type: 3}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
     onPointerEnter:
       m_PersistentCalls:
         m_Calls:

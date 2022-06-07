@@ -77,5 +77,15 @@ PrefabInstance:
       propertyPath: resourceType
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: Raise
+      objectReference: {fileID: 0}
+    - target: {fileID: 5693511479882952026, guid: 5028585d6a00248d49ca06153e49d65c,
+        type: 3}
+      propertyPath: pointerEvents.onClick.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 8300000, guid: be2e20393acf842caa4d89bbe8eca49f, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5028585d6a00248d49ca06153e49d65c, type: 3}
