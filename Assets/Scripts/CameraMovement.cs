@@ -12,10 +12,13 @@ public class CameraMovement : MonoBehaviour
 
     public UnityEvent<bool> onCameraStoppedMoving;
 
+    public Transform anchorForCameraMovementBounds;
+    public float maxRadiusFromCenter = 200f;
+
     #endregion
 
     #region Fields
-    
+
     private bool _mousePressed;
     private Vector3 _mouseInput;
     private float _mouseDeltaMagnitude;
@@ -25,7 +28,6 @@ public class CameraMovement : MonoBehaviour
     private Vector3 _targetPosition;
     private bool _isMoving;
     private bool _isAllowedToMove = true;
-    
 
     #endregion
 
@@ -80,8 +82,29 @@ public class CameraMovement : MonoBehaviour
             SetPosOnPlane();
             _targetPosition = currentPosition + (_dragStartPosition - _currentPosOnPlane);
         }
-        transform.position = Vector3.Lerp(currentPosition, _targetPosition, Time.deltaTime * movementSpeed);
+
+        if (anchorForCameraMovementBounds != null)
+        {
+            var anchor = anchorForCameraMovementBounds.position;
+            var dist = Vector3.Distance(anchor, _targetPosition);
+
+            if (dist > maxRadiusFromCenter)
+            {
+                var newTarget = anchor + (_targetPosition - anchor).normalized * (maxRadiusFromCenter - 10);
+                transform.position = Vector3.Lerp(currentPosition, newTarget, Time.deltaTime * movementSpeed);
+            }
+            else
+            {
+                transform.position = Vector3.Lerp(currentPosition, _targetPosition, Time.deltaTime * movementSpeed);
+            }
+        }
+        else
+        {
+            transform.position = Vector3.Lerp(currentPosition, _targetPosition, Time.deltaTime * movementSpeed);
+        }
+
         
+
         // event part
         if (_mouseDeltaMagnitude >= 0.7f && _mousePressed)
         {
@@ -93,7 +116,6 @@ public class CameraMovement : MonoBehaviour
             if (_isMoving) onCameraStoppedMoving.Invoke(true);
             _isMoving = false;
         }
-
     }
 
     private void SetPosOnPlane()

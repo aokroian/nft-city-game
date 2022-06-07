@@ -48,13 +48,13 @@ MonoBehaviour:
   containerForSpawnedObjects: {fileID: 0}
   resourcePrefabs:
   - type: 0
-    prefab: {fileID: 4460830111406213305, guid: 14dd5a7e60c988b4aa7b68aecae7a046,
+    prefab: {fileID: 2979475531956507600, guid: 14dd5a7e60c988b4aa7b68aecae7a046,
       type: 3}
   - type: 1
     prefab: {fileID: 4460830111406213305, guid: 5028585d6a00248d49ca06153e49d65c,
       type: 3}
   - type: 2
-    prefab: {fileID: 4460830111406213305, guid: 992d0c4ea03152c4a8b02dba66874a23,
+    prefab: {fileID: 5813661139347471949, guid: 76481f0b31a4d48fb85eabb22b58f5eb,
       type: 3}
   layersToCheckBeforeSpawn:
     serializedVersion: 2
@@ -64,6 +64,7 @@ MonoBehaviour:
   onSpawned:
     m_PersistentCalls:
       m_Calls: []
+  apiProvider: {fileID: 0}
 --- !u!114 &1759931024
 MonoBehaviour:
   m_ObjectHideFlags: 0

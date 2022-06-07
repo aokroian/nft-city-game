@@ -386,6 +386,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  anchorForCameraMovementBounds: {fileID: 0}
+  maxRadiusFromCenter: 300
 --- !u!114 &2058725919
 MonoBehaviour:
   m_ObjectHideFlags: 0

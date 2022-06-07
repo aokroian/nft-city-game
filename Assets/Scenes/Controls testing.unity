@@ -420,18 +420,6 @@ PrefabInstance:
       propertyPath: containerForSpawnedObjects
       value: 
       objectReference: {fileID: 2042455557}
-    - target: {fileID: 272977144706832321, guid: 719d65aac552bd644874497e38f316cd,
-        type: 3}
-      propertyPath: resourcePrefabs.Array.data[0].prefab
-      value: 
-      objectReference: {fileID: 2979475531956507600, guid: 14dd5a7e60c988b4aa7b68aecae7a046,
-        type: 3}
-    - target: {fileID: 272977144706832321, guid: 719d65aac552bd644874497e38f316cd,
-        type: 3}
-      propertyPath: resourcePrefabs.Array.data[2].prefab
-      value: 
-      objectReference: {fileID: 5813661139347471949, guid: 76481f0b31a4d48fb85eabb22b58f5eb,
-        type: 3}
     - target: {fileID: 272977144706832322, guid: 719d65aac552bd644874497e38f316cd,
         type: 3}
       propertyPath: m_Name
@@ -439,6 +427,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 719d65aac552bd644874497e38f316cd, type: 3}
+--- !u!1 &1211410748
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1211410749}
+  m_Layer: 0
+  m_Name: Camera Anchor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1211410749
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1211410748}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1608597123 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1900465180559250848, guid: f1cb115bb21624949967e622049c769c,
@@ -853,6 +872,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2058725918, guid: bee4cabaffe814a78ac5e0399baa033c, type: 3}
+      propertyPath: anchorForCameraMovementBounds
+      value: 
+      objectReference: {fileID: 1211410749}
     - target: {fileID: 8745722937494729292, guid: bee4cabaffe814a78ac5e0399baa033c,
         type: 3}
       propertyPath: m_Name
@@ -866,7 +889,7 @@ PrefabInstance:
     - target: {fileID: 8745722937494729293, guid: bee4cabaffe814a78ac5e0399baa033c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 133.00267
       objectReference: {fileID: 0}
     - target: {fileID: 8745722937494729293, guid: bee4cabaffe814a78ac5e0399baa033c,
         type: 3}
@@ -876,7 +899,7 @@ PrefabInstance:
     - target: {fileID: 8745722937494729293, guid: bee4cabaffe814a78ac5e0399baa033c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -134.5027
       objectReference: {fileID: 0}
     - target: {fileID: 8745722937494729293, guid: bee4cabaffe814a78ac5e0399baa033c,
         type: 3}

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Enums;
 using UnityEngine;
 
@@ -29,6 +30,7 @@ namespace DataClasses
             buyCoinsCost = houseDto.buyCoinsCost;
             buildTimer = houseDto.buildTimer;
             upgradeTimer = houseDto.upgradeTimer;
+            upgradeResourceCost = houseDto.upgradeResourceCost;
         }
 
 
@@ -49,5 +51,6 @@ namespace DataClasses
         public bool allowedToUpgradeByResources;
         public bool allowedToUpgradeByCoins;
         public float buyCoinsCost;
+        public Dictionary<ResourceType, int> upgradeResourceCost;
     }
 }

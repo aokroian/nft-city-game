@@ -1,3 +1,4 @@
+using System.Linq;
 using DataClasses;
 using Enums;
 using Events;
@@ -47,6 +48,10 @@ namespace UI
 
         private BuildingData _buildingData;
         private PlayerData _playerData;
+
+        private TextMeshProUGUI _buyButtonTMP;
+        private TextMeshProUGUI _upgradeWithCoinsButtonTMP;
+        private TextMeshProUGUI _upgradeWithResourcesButtonTMP;
 
         #endregion
 
@@ -99,7 +104,9 @@ namespace UI
             }
 
             // menu buttons 
-            claimButton.gameObject.SetActive(_buildingData is {isBought: true} && _buildingData.vault >= _buildingData.minClaim);
+
+            claimButton.gameObject.SetActive(_buildingData is {isBought: true} &&
+                                             _buildingData.vault >= _buildingData.minClaim);
             buyButton.gameObject.SetActive(_buildingData is {isBought: false});
             upgradeByCoinsButton.gameObject.SetActive(_buildingData is {isBought: true, tier: < 3});
             upgradeByResourcesButton.gameObject.SetActive(_buildingData is {isBought: true, tier: < 3});
@@ -108,8 +115,23 @@ namespace UI
             upgradeByCoinsButton.interactable = _buildingData?.allowedToUpgradeByCoins ?? false;
             upgradeByResourcesButton.interactable = _buildingData?.allowedToUpgradeByResources ?? false;
 
-            buyButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text =
-                $"Buy {_buildingData?.buyCoinsCost:0.0000} coins";
+
+            _buyButtonTMP ??= buyButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            _upgradeWithCoinsButtonTMP ??= upgradeByCoinsButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+            _upgradeWithResourcesButtonTMP ??= upgradeByResourcesButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
+
+
+            _buyButtonTMP.text =
+                $"Buy for {_buildingData?.buyCoinsCost:0.0000} coins";
+
+
+            _upgradeWithCoinsButtonTMP.text =
+                $"Upgrade for {_buildingData?.upgradeCost:0.0000} coins";
+
+            var woodPart = _buildingData?.upgradeResourceCost?[ResourceType.Wood] + " wood ";
+            var stonePart = _buildingData?.upgradeResourceCost?[ResourceType.Stone] + " stone ";
+            var ironPart = _buildingData?.upgradeResourceCost?[ResourceType.Iron] + " iron ";
+            _upgradeWithResourcesButtonTMP.text = "Upgrade for " + woodPart + stonePart + ironPart;
         }
 
         public void RaiseBuyHouseEvent()
