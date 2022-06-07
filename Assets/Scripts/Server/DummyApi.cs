@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Enums;
+using UnityEngine;
 using UnityEngine.Events;
 
 namespace Server
@@ -173,13 +174,16 @@ namespace Server
         {
             if (_fullSave.mapResources[type] > 0 && _fullSave.energy >= _fullSave.energyToCollect)
             {
+                Debug.Log("COLLECT");
                 _fullSave.mapResources[type]--;
                 _fullSave.energy -= _fullSave.energyToCollect;
                 _fullSave.currentResources[type]++;
                 result(true);
+                LoadFullSave(_fullSave);
             }
             else
             {
+                Debug.Log("NOT COLLECT " + type + " " + _fullSave.mapResources[type] + " " + _fullSave.energy + " " + _fullSave.energyToCollect);
                 result(false);
             }
         }
@@ -203,7 +207,7 @@ namespace Server
                 coins = 10.567f,
                 energy = 55,
                 energyToCollect = 15,
-                houses = new HouseDto[3],
+                houses = new HouseDto[6],
                 mapResources = new Dictionary<ResourceType, int>
                 {
                     {ResourceType.Stone, 4},
@@ -212,19 +216,23 @@ namespace Server
                 },
                 currentResources = new Dictionary<ResourceType, int>
                 {
-                    {ResourceType.Stone, 4},
-                    {ResourceType.Wood, 6},
-                    {ResourceType.Iron, 3}
+                    {ResourceType.Stone, 2},
+                    {ResourceType.Wood, 2},
+                    {ResourceType.Iron, 2}
                 }
             };
+            Debug.Log("11111111111 - " + fullSaveDto.mapResources.Count() + " " + fullSaveDto.mapResources[ResourceType.Iron]);
             return fullSaveDto;
         }
 
         private static void AddHousesToFullSaveDto(FullSaveDto fullSaveDto)
         {
-            fullSaveDto.houses[0] = CreateHouseDto(1, false, HouseStatus.Average, 1);
-            fullSaveDto.houses[1] = CreateHouseDto(2, false, HouseStatus.Bad, 2);
-            fullSaveDto.houses[2] = CreateHouseDto(3, false, HouseStatus.Good, 3);
+            fullSaveDto.houses[0] = CreateHouseDto(0, true, HouseStatus.Average, 1);
+            fullSaveDto.houses[1] = CreateHouseDto(1, false, HouseStatus.Bad, 2);
+            fullSaveDto.houses[2] = CreateHouseDto(2, false, HouseStatus.Good, 3);
+            fullSaveDto.houses[3] = CreateHouseDto(3, false, HouseStatus.Good, 3);
+            fullSaveDto.houses[4] = CreateHouseDto(4, false, HouseStatus.Good, 3);
+            fullSaveDto.houses[5] = CreateHouseDto(5, false, HouseStatus.Good, 3);
         }
 
         private static HouseDto CreateHouseDto(int id, bool isBought, HouseStatus status, int tier)

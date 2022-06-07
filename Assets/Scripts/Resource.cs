@@ -3,6 +3,7 @@ using DG.Tweening;
 using Enums;
 using Events;
 using TMPro;
+using UI;
 using UnityEngine;
 
 public class Resource : Interactable
@@ -70,6 +71,10 @@ public class Resource : Interactable
         resourceMenu.SetActive(!isMenuOpen);
         isMenuOpen = !isMenuOpen;
         enabled = !isMenuOpen;
+        if (isMenuOpen)
+        {
+            GetComponentInChildren<ResourceUI>().ReloadUI();
+        }
     }
 
     #endregion

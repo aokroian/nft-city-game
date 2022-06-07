@@ -1,3 +1,4 @@
+using DataClasses;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,34 +18,44 @@ namespace UI
 
         #endregion
 
+        #region Fields
+
+        private Player player;
+
+        #endregion
+
+
         #region MonoBehaviour
 
         private void Start()
         {
-            resource ??= GetComponentInParent<Resource>(); ;
+            resource ??= GetComponentInParent<Resource>();
+            
         }
 
         private void OnEnable()
         {
+            player ??= GameObject.Find("Player").GetComponent<Player>();
             ReloadUI();
         }
 
         public void ReloadUI()
         {
-            int energyLeft = 12346;
-            int energyCost = 12345;
+            
+            int energyLeft = player.playerData.energyAmount;
+            int energyCost = player.playerData.energyToCollect;
             var typeStr = resource.resourceType.ToString();
             resourceTypeField.text = typeStr;
             
             if (energyLeft >= energyCost)
             {
                 mainField.text = $"Collect {typeStr} for {energyCost} energy?";
-                collectButton.enabled = true;
+                collectButton.gameObject.SetActive(true);
             }
             else
             {
                 mainField.text = $"You need {energyCost} energy to collect {typeStr}";
-                collectButton.enabled = false;
+                collectButton.gameObject.SetActive(false);
             }
         }
 

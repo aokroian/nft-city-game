@@ -34,7 +34,7 @@ public class NewResourceSpawner : MonoBehaviour
 
     public void Spawn(Dictionary<ResourceType, int> resources)
     {
-        var resourcesToSpawn = getUnspawnedResourcesCount(resources);
+        var resourcesToSpawn = getUnspawnedResourcesCount(resources.ToDictionary(e => e.Key, e => e.Value));
         Debug.Log("Spawning " + resourcesToSpawn);
         foreach (var res in resourcesToSpawn)
         {
