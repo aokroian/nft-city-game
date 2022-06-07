@@ -59,11 +59,12 @@ MonoBehaviour:
   layersToCheckBeforeSpawn:
     serializedVersion: 2
     m_Bits: 1
-  xAxisBounds: {x: -150, y: 150}
-  zAxisBounds: {x: -150, y: 150}
+  xAxisBounds: {x: -100, y: 300}
+  zAxisBounds: {x: -300, y: 100}
   onSpawned:
     m_PersistentCalls:
       m_Calls: []
+  apiProvider: {fileID: 0}
 --- !u!114 &1759931024
 MonoBehaviour:
   m_ObjectHideFlags: 0
