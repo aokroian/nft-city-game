@@ -73,6 +73,14 @@ public class Building : Interactable
         foreach (Transform t in visualsContainer)
         {
             t.gameObject.SetActive(t.name == "Tier" + (buildingData.tier));
+            if (buildingData.isBought)
+            {
+                t.gameObject.GetComponentInChildren<MeshRenderer>().material.color = Color.white;
+            }
+            else
+            {
+                t.gameObject.GetComponentInChildren<MeshRenderer>().material.color = new Color(0.2f, 0.2f, 0.2f);
+            }
         }
     }
     
