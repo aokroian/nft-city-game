@@ -34,6 +34,7 @@ namespace UI
         [SerializeField] private TextMeshProUGUI minClaim;
         [SerializeField] private TextMeshProUGUI vault;
         [SerializeField] private Slider vaultSlider;
+        [SerializeField] private GameObject vaultContainer;
 
         [SerializeField] private Button claimButton;
 
@@ -101,6 +102,7 @@ namespace UI
             if (_buildingData != null)
             {
                 vaultSlider.value = _buildingData.vault;
+                vaultContainer.SetActive(_buildingData.isBought);
             }
 
             // menu buttons 
