@@ -230,9 +230,9 @@ namespace Server
             fullSaveDto.houses[0] = CreateHouseDto(0, true, HouseStatus.Average, 1);
             fullSaveDto.houses[1] = CreateHouseDto(1, false, HouseStatus.Bad, 2);
             fullSaveDto.houses[2] = CreateHouseDto(2, false, HouseStatus.Good, 3);
-            fullSaveDto.houses[3] = CreateHouseDto(3, false, HouseStatus.Good, 3);
-            fullSaveDto.houses[4] = CreateHouseDto(4, false, HouseStatus.Good, 3);
-            fullSaveDto.houses[5] = CreateHouseDto(5, false, HouseStatus.Good, 3);
+            fullSaveDto.houses[3] = CreateHouseDto(3, false, HouseStatus.Good, 2);
+            fullSaveDto.houses[4] = CreateHouseDto(4, false, HouseStatus.Good, 1);
+            fullSaveDto.houses[5] = CreateHouseDto(5, false, HouseStatus.Good, 1);
         }
 
         private static HouseDto CreateHouseDto(int id, bool isBought, HouseStatus status, int tier)

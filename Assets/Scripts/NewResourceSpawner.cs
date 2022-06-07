@@ -29,13 +29,12 @@ public class NewResourceSpawner : MonoBehaviour
 
     public void Spawn(FullSaveDto fullData)
     {
-        Spawn(fullData.mapResources);
+        StartCoroutine(Spawn(fullData.mapResources));
     }
 
-    public void Spawn(Dictionary<ResourceType, int> resources)
+    public IEnumerator Spawn(Dictionary<ResourceType, int> resources)
     {
         var resourcesToSpawn = getUnspawnedResourcesCount(resources.ToDictionary(e => e.Key, e => e.Value));
-        Debug.Log("Spawning " + resourcesToSpawn);
         foreach (var res in resourcesToSpawn)
         {
             for (int i = 0; i < res.Value; i ++)
@@ -44,6 +43,7 @@ public class NewResourceSpawner : MonoBehaviour
                 {
                     // NOTHING
                 }
+                yield return null;
             }
         }
     }
@@ -57,23 +57,21 @@ public class NewResourceSpawner : MonoBehaviour
         return countShouldBe;
     }
 
-    // TODO: Rewrite without useless instantiations!!1
     private bool SpawnSingle(ResourceType type, GameObject prefab)
     {
         var randX = Random.Range(xAxisBounds.x, xAxisBounds.y);
         var randZ = Random.Range(zAxisBounds.x, zAxisBounds.y);
         var randomPosition = new Vector3(randX, 0, randZ);
 
-        var spawnedCopy = Instantiate(prefab, Vector3.up * 1000, Quaternion.identity,
-            containerForSpawnedObjects);
 
         // check spawn position
-        var boxCollider = spawnedCopy.GetComponent<BoxCollider>();
-        var bounds = boxCollider.bounds;
-        var colliderSize = Math.Max(bounds.size.x, bounds.size.y);
+        var boxCollider = prefab.GetComponent<BoxCollider>();
+        var colliderSize = Math.Max(boxCollider.size.x, boxCollider.size.y);
 
         if (ValidateSpawnPosition(randomPosition, colliderSize, layersToCheckBeforeSpawn))
         {
+            var spawnedCopy = Instantiate(prefab, Vector3.up * 1000, Quaternion.identity,
+                    containerForSpawnedObjects);
             spawnedCopy.transform.position = randomPosition;
             spawnedCopy.name = spawnedCopy.name.Replace("(Clone)", "");
             spawnedCopy.GetComponent<Resource>().apiProvider = apiProvider;
@@ -82,20 +80,19 @@ public class NewResourceSpawner : MonoBehaviour
         }
         else
         {
-            Destroy(spawnedCopy);
             return false;
         }
     }
 
     protected virtual bool ValidateSpawnPosition(Vector3 spawnPosition, float radius, LayerMask layersToCheck)
     {
-        var isAllowed = false;
+        //var isAllowed = false;
 
         var nearbyObjects = new Collider[20];
         var fakeCollider = Physics.OverlapSphereNonAlloc(spawnPosition, radius, nearbyObjects, layersToCheck);
 
-        isAllowed = nearbyObjects.ToList().Find(elem => elem != null) == null;
-        Debug.Log(isAllowed + " " + spawnPosition + " " + radius + " " + nearbyObjects.ToList().Find(elem => elem != null));
-        return isAllowed;
+        //isAllowed = nearbyObjects.ToList().Find(elem => elem != null) == null;
+        //Debug.Log(isAllowed + " " + spawnPosition + " " + radius + " " + nearbyObjects.ToList().Find(elem => elem != null));
+        return fakeCollider == 0;
     }
 }
