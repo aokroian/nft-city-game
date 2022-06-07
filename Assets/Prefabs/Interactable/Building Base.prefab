@@ -1716,6 +1716,7 @@ MonoBehaviour:
   minClaim: {fileID: 915742817}
   vault: {fileID: 1441533541}
   vaultSlider: {fileID: 5745186281518196276}
+  vaultContainer: {fileID: 4896833230730101556}
   claimButton: {fileID: 8340145897776629355}
   buyButton: {fileID: 2495196508228381853}
   upgradeByCoinsButton: {fileID: 6560590414182274}
