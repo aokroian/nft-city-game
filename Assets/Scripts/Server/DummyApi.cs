@@ -233,6 +233,9 @@ namespace Server
             fullSaveDto.houses[3] = CreateHouseDto(3, false, HouseStatus.Good, 2);
             fullSaveDto.houses[4] = CreateHouseDto(4, false, HouseStatus.Good, 1);
             fullSaveDto.houses[5] = CreateHouseDto(5, false, HouseStatus.Good, 1);
+            fullSaveDto.houses[5] = CreateHouseDto(6, false, HouseStatus.Good, 3);
+            fullSaveDto.houses[5] = CreateHouseDto(7, false, HouseStatus.Good, 1);
+            fullSaveDto.houses[5] = CreateHouseDto(8, false, HouseStatus.Average, 2);
         }
 
         private static HouseDto CreateHouseDto(int id, bool isBought, HouseStatus status, int tier)
