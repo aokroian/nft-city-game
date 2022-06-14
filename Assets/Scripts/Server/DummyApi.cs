@@ -4,6 +4,7 @@ using System.Linq;
 using Enums;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 namespace Server
 {
@@ -207,7 +208,7 @@ namespace Server
                 coins = 10.567f,
                 energy = 55,
                 energyToCollect = 15,
-                houses = new HouseDto[6],
+                houses = new HouseDto[19],
                 mapResources = new Dictionary<ResourceType, int>
                 {
                     {ResourceType.Stone, 4},
@@ -227,15 +228,10 @@ namespace Server
 
         private static void AddHousesToFullSaveDto(FullSaveDto fullSaveDto)
         {
-            fullSaveDto.houses[0] = CreateHouseDto(0, true, HouseStatus.Average, 1);
-            fullSaveDto.houses[1] = CreateHouseDto(1, false, HouseStatus.Bad, 2);
-            fullSaveDto.houses[2] = CreateHouseDto(2, false, HouseStatus.Good, 3);
-            fullSaveDto.houses[3] = CreateHouseDto(3, false, HouseStatus.Good, 2);
-            fullSaveDto.houses[4] = CreateHouseDto(4, false, HouseStatus.Good, 1);
-            fullSaveDto.houses[5] = CreateHouseDto(5, false, HouseStatus.Good, 1);
-            fullSaveDto.houses[5] = CreateHouseDto(6, false, HouseStatus.Good, 3);
-            fullSaveDto.houses[5] = CreateHouseDto(7, false, HouseStatus.Good, 1);
-            fullSaveDto.houses[5] = CreateHouseDto(8, false, HouseStatus.Average, 2);
+            for (var i = 0; i < fullSaveDto.houses.Length; i++)
+            {
+                fullSaveDto.houses[i] = CreateHouseDto(i, false, (HouseStatus)Random.Range(0, 3), Random.Range(1, 4));
+            }
         }
 
         private static HouseDto CreateHouseDto(int id, bool isBought, HouseStatus status, int tier)
