@@ -175,7 +175,7 @@ namespace Server
         {
             if (_fullSave.mapResources[type] > 0 && _fullSave.energy >= _fullSave.energyToCollect)
             {
-                Debug.Log("COLLECT");
+                // Debug.Log("COLLECT");
                 _fullSave.mapResources[type]--;
                 _fullSave.energy -= _fullSave.energyToCollect;
                 _fullSave.currentResources[type]++;
@@ -184,7 +184,7 @@ namespace Server
             }
             else
             {
-                Debug.Log("NOT COLLECT " + type + " " + _fullSave.mapResources[type] + " " + _fullSave.energy + " " + _fullSave.energyToCollect);
+                // Debug.Log("NOT COLLECT " + type + " " + _fullSave.mapResources[type] + " " + _fullSave.energy + " " + _fullSave.energyToCollect);
                 result(false);
             }
         }
@@ -222,7 +222,7 @@ namespace Server
                     {ResourceType.Iron, 2}
                 }
             };
-            Debug.Log("11111111111 - " + fullSaveDto.mapResources.Count() + " " + fullSaveDto.mapResources[ResourceType.Iron]);
+            // Debug.Log("11111111111 - " + fullSaveDto.mapResources.Count() + " " + fullSaveDto.mapResources[ResourceType.Iron]);
             return fullSaveDto;
         }
 

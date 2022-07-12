@@ -26,7 +26,7 @@ public class Player : MonoBehaviour
         {
                 onSetPlayerData ??= new UnityEvent<PlayerData>();
                 playerData ??= new PlayerData();
-                Debug.Log("energyToCollect = " + playerData.energyToCollect);
+                // Debug.Log("energyToCollect = " + playerData.energyToCollect);
     }
 
         public void SetPlayerData(FullSaveDto fullSaveDto)
@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
                 if (fullSaveDto != null)
                 {
                         playerData = new PlayerData(fullSaveDto: fullSaveDto);
-                        Debug.Log("energyToCollect = " + playerData.energyToCollect);
+                        // Debug.Log("energyToCollect = " + playerData.energyToCollect);
                         onSetPlayerData.Invoke(playerData);
                 }
         }
