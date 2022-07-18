@@ -1,7 +1,7 @@
-using System.Linq;
 using DataClasses;
 using Enums;
 using Events;
+using MonoBehaviours;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -47,8 +47,8 @@ namespace UI
 
         #region Fields
 
-        private BuildingData _buildingData;
-        private PlayerData _playerData;
+        private BuildingItem _buildingItem;
+        private PlayerInventory _playerInventory;
 
         private TextMeshProUGUI _buyButtonTMP;
         private TextMeshProUGUI _upgradeWithCoinsButtonTMP;
@@ -61,27 +61,27 @@ namespace UI
         private void Start()
         {
             building ??= GetComponentInParent<Building>();
-            _playerData ??= new PlayerData();
+            _playerInventory ??= FindObjectOfType<PlayerInventory>();
         }
 
         public void SetPlayerData(FullSaveDto fullSaveDto)
         {
-            _playerData = new PlayerData(fullSaveDto: fullSaveDto);
+            _playerInventory.UpdateInventory(fullSaveDto); 
         }
 
         public void ReloadUI()
         {
-            _buildingData = building.buildingData;
+            _buildingItem = building.buildingItem;
             // in world part
-            hoverPlate.text = $"House {_buildingData?.tier} tier";
-            if (_buildingData?.buildTimer > 0)
+            hoverPlate.text = $"House {_buildingItem?.tier} tier";
+            if (_buildingItem?.buildTimer > 0)
             {
-                hoverPlate.text += $"\n{_buildingData?.buildTimer:0} sec to build";
+                hoverPlate.text += $"\n{_buildingItem?.buildTimer:0} sec to build";
             }
 
-            if (_buildingData?.upgradeTimer > 0)
+            if (_buildingItem?.upgradeTimer > 0)
             {
-                hoverPlate.text += $"\n{_buildingData?.upgradeTimer:0} sec to upgrade";
+                hoverPlate.text += $"\n{_buildingItem?.upgradeTimer:0} sec to upgrade";
             }
 
             // if (_buildingData?.status == HouseStatus.Bad)
@@ -90,32 +90,32 @@ namespace UI
             // }
 
             // menu part
-            menuTitle.text = $"House {_buildingData?.tier} tier";
-            tier.text = $"Tier: {_buildingData?.tier}";
-            status.text = $"Status: {_buildingData?.status}";
-            citizensCount.text = $"Citizens inside: {_buildingData?.citizensCount}";
-            dailyClaim.text = $"Daily claim: {_buildingData?.dailyClaim:0.0000}";
-            lastClaim.text = $"Last claim: {_buildingData?.lastClaim:0.0000}";
-            totalClaim.text = $"Total claim: {_buildingData?.totalClaim:0.0000}";
-            minClaim.text = $"Min claim: {_buildingData?.minClaim:0.0000}";
-            vault.text = $"Vault: {_buildingData?.vault:0.00}%";
-            if (_buildingData != null)
+            menuTitle.text = $"House {_buildingItem?.tier} tier";
+            tier.text = $"Tier: {_buildingItem?.tier}";
+            status.text = $"Status: {_buildingItem?.status}";
+            citizensCount.text = $"Citizens inside: {_buildingItem?.citizensCount}";
+            dailyClaim.text = $"Daily claim: {_buildingItem?.dailyClaim:0.0000}";
+            lastClaim.text = $"Last claim: {_buildingItem?.lastClaim:0.0000}";
+            totalClaim.text = $"Total claim: {_buildingItem?.totalClaim:0.0000}";
+            minClaim.text = $"Min claim: {_buildingItem?.minClaim:0.0000}";
+            vault.text = $"Vault: {_buildingItem?.vault:0.00}%";
+            if (_buildingItem != null)
             {
-                vaultSlider.value = _buildingData.vault;
-                vaultContainer.SetActive(_buildingData.isBought);
+                vaultSlider.value = _buildingItem.vault;
+                // vaultContainer.SetActive(_buildingItem.isBought);
             }
 
             // menu buttons 
 
-            claimButton.gameObject.SetActive(_buildingData is {isBought: true} &&
-                                             _buildingData.vault >= _buildingData.minClaim);
-            buyButton.gameObject.SetActive(_buildingData is {isBought: false});
-            upgradeByCoinsButton.gameObject.SetActive(_buildingData is {isBought: true, tier: < 3});
-            upgradeByResourcesButton.gameObject.SetActive(_buildingData is {isBought: true, tier: < 3});
+            // claimButton.gameObject.SetActive(_buildingItem is {isBought: true} &&
+                                             // _buildingItem.vault >= _buildingItem.minClaim);
+            // buyButton.gameObject.SetActive(_buildingItem is {isBought: false});
+            // upgradeByCoinsButton.gameObject.SetActive(_buildingItem is {isBought: true, tier: < 3});
+            // upgradeByResourcesButton.gameObject.SetActive(_buildingItem is {isBought: true, tier: < 3});
 
-            buyButton.interactable = _buildingData?.allowedToBuy ?? false;
-            upgradeByCoinsButton.interactable = _buildingData?.allowedToUpgradeByCoins ?? false;
-            upgradeByResourcesButton.interactable = _buildingData?.allowedToUpgradeByResources ?? false;
+            buyButton.interactable = _buildingItem?.allowedToBuy ?? false;
+            upgradeByCoinsButton.interactable = _buildingItem?.allowedToUpgradeByCoins ?? false;
+            upgradeByResourcesButton.interactable = _buildingItem?.allowedToUpgradeByResources ?? false;
 
 
             _buyButtonTMP ??= buyButton.transform.GetChild(0).GetComponent<TextMeshProUGUI>();
@@ -124,40 +124,40 @@ namespace UI
 
 
             _buyButtonTMP.text =
-                $"Buy for {_buildingData?.buyCoinsCost:0.0000} coins";
+                $"Buy for {_buildingItem?.buyCoinsCost:0.0000} coins";
 
 
             _upgradeWithCoinsButtonTMP.text =
-                $"Upgrade for {_buildingData?.upgradeCost:0.0000} coins";
+                $"Upgrade for {_buildingItem?.upgradeCost:0.0000} coins";
 
-            var woodPart = _buildingData?.upgradeResourceCost?[ResourceType.Wood] + " wood ";
-            var stonePart = _buildingData?.upgradeResourceCost?[ResourceType.Stone] + " stone ";
-            var ironPart = _buildingData?.upgradeResourceCost?[ResourceType.Iron] + " iron ";
+            var woodPart = _buildingItem?.upgradeResourceCost?[ResourceType.Wood] + " wood ";
+            var stonePart = _buildingItem?.upgradeResourceCost?[ResourceType.Stone] + " stone ";
+            var ironPart = _buildingItem?.upgradeResourceCost?[ResourceType.Iron] + " iron ";
             _upgradeWithResourcesButtonTMP.text = "Upgrade for " + woodPart + stonePart + ironPart;
         }
 
         public void RaiseBuyHouseEvent()
         {
-            _buildingData = building.buildingData;
-            buyHouseEvent.Raise(_buildingData.id);
+            _buildingItem = building.buildingItem;
+            buyHouseEvent.Raise(_buildingItem.id);
         }
 
         public void RaiseUpgradeHouseWithCoinsEvent()
         {
-            _buildingData = building.buildingData;
-            upgradeHouseWithCoinsEvent.Raise(_buildingData.id);
+            _buildingItem = building.buildingItem;
+            upgradeHouseWithCoinsEvent.Raise(_buildingItem.id);
         }
 
         public void RaiseUpgradeHouseWithResourcesEvent()
         {
-            _buildingData = building.buildingData;
-            upgradeHouseWithResourcesEvent.Raise(_buildingData.id);
+            _buildingItem = building.buildingItem;
+            upgradeHouseWithResourcesEvent.Raise(_buildingItem.id);
         }
 
         public void RaiseClaimHouseVaultEvent()
         {
-            _buildingData = building.buildingData;
-            claimHouseVaultEvent.Raise(_buildingData.id);
+            _buildingItem = building.buildingItem;
+            claimHouseVaultEvent.Raise(_buildingItem.id);
         }
 
         #endregion

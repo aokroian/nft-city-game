@@ -1,3 +1,5 @@
+using Server.Dto;
+using Server.Dto.Inventory;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,7 +8,7 @@ namespace Events
     public class HouseDataEventListener : MonoBehaviour
     {
         public HouseDataEvent eventForListen;
-        public UnityEvent<HouseDto> response;
+        public UnityEvent<InventoryBuildingDto> response;
 
         private void OnEnable()
         {
@@ -18,7 +20,7 @@ namespace Events
             eventForListen.RemoveListener(this);
         }
 
-        public void OnEventRaised(HouseDto arg)
+        public void OnEventRaised(InventoryBuildingDto arg)
         {
             response.Invoke(arg);
         }

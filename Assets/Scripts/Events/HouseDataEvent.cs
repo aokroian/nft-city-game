@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using Server.Dto;
+using Server.Dto.Inventory;
 using UnityEngine;
 
 namespace Events
@@ -8,7 +10,7 @@ namespace Events
     {
         private List<HouseDataEventListener> listeners = new();
 
-        public void Raise(HouseDto arg)
+        public void Raise(InventoryBuildingDto arg)
         {
             // Backwards for easy removing listener inside listener itself
             for (int i = listeners.Count - 1; i >= 0; i--)

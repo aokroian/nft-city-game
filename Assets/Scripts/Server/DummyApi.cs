@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using DataClasses;
 using Enums;
+using Server.Dto;
+using Server.Dto.Inventory;
 using UnityEngine;
 using UnityEngine.Events;
 using Random = UnityEngine.Random;
@@ -11,7 +14,7 @@ namespace Server
     public class DummyApi : AbstractServerApi
     {
         public UnityEvent<FullSaveDto> onFullSaveLoaded;
-        public UnityEvent<HouseDto> onHouseDataLoaded;
+        public UnityEvent<InventoryBuildingDto> onHouseDataLoaded;
 
         public int LoadCost => 100;
 
@@ -22,7 +25,7 @@ namespace Server
             _fullSave = CreateFullSaveDto();
             AddHousesToFullSaveDto(_fullSave);
             onFullSaveLoaded ??= new UnityEvent<FullSaveDto>();
-            onHouseDataLoaded ??= new UnityEvent<HouseDto>();
+            onHouseDataLoaded ??= new UnityEvent<InventoryBuildingDto>();
         }
 
 
@@ -55,9 +58,9 @@ namespace Server
             BuyOrUpgradeHouse(houseId, dto => { }, error => { });
             foreach (var houseDto in _fullSave.houses)
             {
-                if (houseDto.id == houseId && _fullSave.coins >= houseDto.buyCoinsCost && !houseDto.isBought)
+                if (houseDto.inventoryID == houseId && _fullSave.coins >= houseDto.buyCoinsCost/* && !houseDto.isBought*/)
                 {
-                    houseDto.isBought = true;
+                    // houseDto.isBought = true;
                     _fullSave.coins -= houseDto.buyCoinsCost;
                 }
             }
@@ -69,8 +72,8 @@ namespace Server
         {
             foreach (var houseDto in _fullSave.houses)
             {
-                if (houseDto.id == houseId && CheckIfAllowedToUpgradeByCoins(houseDto, _fullSave) &&
-                    houseDto.isBought)
+                if (houseDto.inventoryID == houseId && CheckIfAllowedToUpgradeByCoins(houseDto, _fullSave)/* &&
+                    houseDto.isBought*/)
                 {
                     houseDto.tier++;
                     houseDto.upgradeCost++;
@@ -95,8 +98,8 @@ namespace Server
         {
             foreach (var houseDto in _fullSave.houses)
             {
-                if (houseDto.id == houseId &&
-                    CheckIfAllowedToUpgradeHouseByResources(houseDto, fullSaveDto: _fullSave) && houseDto.isBought)
+                if (houseDto.inventoryID == houseId &&
+                    CheckIfAllowedToUpgradeHouseByResources(houseDto, fullSaveDto: _fullSave)/* && houseDto.isBought*/)
                 {
                     houseDto.tier++;
                     houseDto.upgradeCost++;
@@ -125,14 +128,14 @@ namespace Server
         {
             foreach (var houseDto in _fullSave.houses)
             {
-                if (houseDto.id == houseId &&
-                    CheckIfAllowedToClaim(houseDto) && houseDto.isBought)
+                if (houseDto.inventoryID == houseId &&
+                    CheckIfAllowedToClaim(houseDto) /*&& houseDto.isBought*/)
                 {
-                    float receivedCoins = (float) (houseDto.dailyclaim * houseDto.vault * 0.01);
+                    float receivedCoins = (float) (houseDto.dailyclaim * houseDto.currentVault * 0.01);
                     houseDto.lastClaim = receivedCoins;
                     houseDto.totalClaim += receivedCoins;
                     _fullSave.coins += receivedCoins;
-                    houseDto.vault = 0;
+                    houseDto.currentVault = 0;
 
                     LoadFullSave(_fullSave);
                     GetHouseData(houseId);
@@ -148,37 +151,37 @@ namespace Server
             result(_fullSave);
         }
 
-        public override void GetHouseData(int houseId, Action<HouseDto> result, Action<ResponseError> error)
+        public override void GetHouseData(int houseId, Action<InventoryBuildingDto> result, Action<ResponseError> error)
         {
             if (_fullSave?.houses?.Length > 0)
             {
-                var houseData = _fullSave.houses.ToList().Find(houseDto => houseDto.id == houseId);
+                var houseData = _fullSave.houses.ToList().Find(houseDto => houseDto.inventoryID == houseId);
                 result(houseData);
             }
         }
 
-        public override void BuyOrUpgradeHouse(int houseId, Action<HouseDto> result, Action<ResponseError> error)
+        public override void BuyOrUpgradeHouse(int houseId, Action<InventoryBuildingDto> result, Action<ResponseError> error)
         {
             // result(house);
         }
 
-        public override void CheckIfHouseBuilt(int houseId, Action<HouseDto> result, Action<ResponseError> error)
+        public override void CheckIfHouseBuilt(int houseId, Action<InventoryBuildingDto> result, Action<ResponseError> error)
         {
-            var house = _fullSave.houses.ToList().Find(houseDto => houseDto.id == houseId);
+            var house = _fullSave.houses.ToList().Find(houseDto => houseDto.inventoryID == houseId);
             if (house != null)
             {
                 result(house);
             }
         }
 
-        public override void CollectResource(ResourceType type, Action<bool> result, Action<ResponseError> error)
+        public override void CollectResource(ResourceItem resourceItem, Action<bool> result, Action<ResponseError> error)
         {
-            if (_fullSave.mapResources[type] > 0 && _fullSave.energy >= _fullSave.energyToCollect)
+            if (_fullSave.mapResources[resourceItem.resourceType] > 0 && _fullSave.energy >= resourceItem.collectEnergyCost)
             {
                 // Debug.Log("COLLECT");
-                _fullSave.mapResources[type]--;
-                _fullSave.energy -= _fullSave.energyToCollect;
-                _fullSave.currentResources[type]++;
+                _fullSave.mapResources[resourceItem.resourceType]--;
+                _fullSave.energy -= resourceItem.collectEnergyCost;
+                _fullSave.currentResources[resourceItem.resourceType]++;
                 result(true);
                 LoadFullSave(_fullSave);
             }
@@ -207,8 +210,7 @@ namespace Server
             {
                 coins = 10.567f,
                 energy = 55,
-                energyToCollect = 15,
-                houses = new HouseDto[19],
+                houses = new InventoryBuildingDto[19],
                 mapResources = new Dictionary<ResourceType, int>
                 {
                     {ResourceType.Stone, 4},
@@ -234,23 +236,23 @@ namespace Server
             }
         }
 
-        private static HouseDto CreateHouseDto(int id, bool isBought, HouseStatus status, int tier)
+        private static InventoryBuildingDto CreateHouseDto(int id, bool isBought, HouseStatus status, int tier)
         {
-            var newHouseDto = new HouseDto()
+            var newHouseDto = new InventoryBuildingDto()
             {
-                id = id,
-                isBought = isBought,
+                inventoryID = id,
+                // isBought = isBought,
                 status = status,
                 tier = tier,
-                citizens = 1,
+                citizensCount = 1,
                 dailyclaim = 0.2345f,
                 lastClaim = 0.1234f,
                 minClaim = 30,
                 totalClaim = 1.6789f,
-                vault = 35.52f,
+                currentVault = 35.52f,
                 upgradeCost = 3.0581f,
                 buyCoinsCost = 3.0581f,
-                buildTimer = 0f,
+                buildStartTime = 0f,
             };
 
             var upgradeResourceCostDictionary = new Dictionary<ResourceType, int>
@@ -271,20 +273,20 @@ namespace Server
 
         #region Methods To Calculate Fields
 
-        private static bool CheckIfAllowedToBuyHouse(HouseDto houseDto, FullSaveDto fullSaveDto)
+        private static bool CheckIfAllowedToBuyHouse(InventoryBuildingDto inventoryBuildingDto, FullSaveDto fullSaveDto)
         {
-            return fullSaveDto.coins >= houseDto.buyCoinsCost;
+            return fullSaveDto.coins >= inventoryBuildingDto.buyCoinsCost;
         }
 
-        private static bool CheckIfAllowedToUpgradeByCoins(HouseDto houseDto, FullSaveDto fullSaveDto)
+        private static bool CheckIfAllowedToUpgradeByCoins(InventoryBuildingDto inventoryBuildingDto, FullSaveDto fullSaveDto)
         {
-            return fullSaveDto.coins >= houseDto.upgradeCost && houseDto.tier < 3;
+            return fullSaveDto.coins >= inventoryBuildingDto.upgradeCost && inventoryBuildingDto.tier < 3;
         }
 
-        private static bool CheckIfAllowedToUpgradeHouseByResources(HouseDto houseDto, FullSaveDto fullSaveDto)
+        private static bool CheckIfAllowedToUpgradeHouseByResources(InventoryBuildingDto inventoryBuildingDto, FullSaveDto fullSaveDto)
         {
             var isAllowed = true;
-            foreach (var resource in houseDto.upgradeResourceCost)
+            foreach (var resource in inventoryBuildingDto.upgradeResourceCost)
             {
                 var current = fullSaveDto.currentResources;
                 var checkResource = current.ToList().Find(r => r.Key == resource.Key);
@@ -294,13 +296,13 @@ namespace Server
                 }
             }
 
-            if (houseDto.tier >= 3) isAllowed = false;
+            if (inventoryBuildingDto.tier >= 3) isAllowed = false;
             return isAllowed;
         }
 
-        private static bool CheckIfAllowedToClaim(HouseDto houseDto)
+        private static bool CheckIfAllowedToClaim(InventoryBuildingDto inventoryBuildingDto)
         {
-            return houseDto.vault >= houseDto.minClaim;
+            return inventoryBuildingDto.currentVault >= inventoryBuildingDto.minClaim;
         }
 
         #endregion

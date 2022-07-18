@@ -1,4 +1,4 @@
-using DataClasses;
+using MonoBehaviours;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,7 +20,7 @@ namespace UI
 
         #region Fields
 
-        private Player player;
+        private HUD _hud;
 
         #endregion
 
@@ -35,16 +35,16 @@ namespace UI
 
         private void OnEnable()
         {
-            player ??= GameObject.Find("Player").GetComponent<Player>();
+            _hud ??= GameObject.Find("Player").GetComponent<HUD>();
             ReloadUI();
         }
 
         public void ReloadUI()
         {
             
-            int energyLeft = player.playerData.energyAmount;
-            int energyCost = player.playerData.energyToCollect;
-            var typeStr = resource.resourceType.ToString();
+            int energyLeft = _hud.playerInventory.Energy;
+            int energyCost = resource.itemSettings.collectEnergyCost; 
+            var typeStr = resource.itemSettings.resourceType.ToString();
             resourceTypeField.text = typeStr;
             
             if (energyLeft >= energyCost)

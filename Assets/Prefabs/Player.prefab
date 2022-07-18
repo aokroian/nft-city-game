@@ -2667,6 +2667,7 @@ GameObject:
   - component: {fileID: 7685156385020122029}
   - component: {fileID: 1928018566}
   - component: {fileID: 1928018567}
+  - component: {fileID: 8959393120280559554}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -2702,10 +2703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1f66d07083b4b33b04cac3d5b4a9830, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    energyAmount: 0
-    coinsAmount: 0
-    energyToCollect: 0
+  playerInventory: {fileID: 0}
   energyField: {fileID: 2138242050}
   coinsField: {fileID: 540921707}
   woodField: {fileID: 710298192}
@@ -2786,6 +2784,21 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &8959393120280559554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7685156385020122026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 736cca8d497d43c6a4591d46d84cc0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  energy: 0
+  coins: 0
+  tools: []
 --- !u!1 &8628654048006415588
 GameObject:
   m_ObjectHideFlags: 0

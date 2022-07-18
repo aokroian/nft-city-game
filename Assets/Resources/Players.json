@@ -1,0 +1,53 @@
+{
+  "player_2342342": {
+    "name": "John",
+    "email": "john@example.com",
+    "inventory": {
+      "energy": 50,
+      "coins": 25.0343,
+      "resources": [
+        {
+          "type": 0,
+          "amount": 4
+        },
+        {
+          "type": 1,
+          "amount": 10
+        },
+        {
+          "type": 2,
+          "amount": 8
+        }
+      ],
+      "tools": [
+        {
+          "type": 0,
+          "amount": 1
+        },
+        {
+          "type": 1,
+          "amount": 1
+        },
+        {
+          "type": 2,
+          "amount": 1
+        }
+      ],
+      "buildings": [
+        {
+          "id": "0001",
+          "status": 2,
+          "buildStartTime": 1657992445399,
+          "upgradeStartTime": 1657992445399,
+          "citizensCount": 3,
+          "tier": 0,
+          "lastClaim": 3.3434
+          
+        }
+      ]
+    },
+    "spawnedResources": [
+      
+    ]
+  }
+}

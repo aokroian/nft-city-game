@@ -1,0 +1,38 @@
+{
+  "name": null,
+  "email": null,
+  "inventory": {
+    "energy": 0,
+    "coins": 3234.23242,
+    "resources": [
+      {
+        "type": 0,
+        "amount": 0
+      }
+    ],
+    "tools": null,
+    "buildings": [
+      {
+        "id": 0,
+        "isBought": false,
+        "status": 0,
+        "tier": 0,
+        "citizens": 0,
+        "dailyclaim": 0.0,
+        "lastClaim": 0.0,
+        "totalClaim": 0.0,
+        "minClaim": 0,
+        "vault": 0.0,
+        "upgradeCost": 0.0,
+        "upgradeResourceCost": null,
+        "buyCoinsCost": 0.0,
+        "buildTimer": 0.0,
+        "upgradeTimer": 0.0,
+        "allowedToBuy": false,
+        "allowedToUpgradeByCoins": false,
+        "allowedToUpgradeByResources": false
+      }
+    ]
+  },
+  "spawnedResources": null
+}

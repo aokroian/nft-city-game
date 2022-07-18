@@ -596,8 +596,7 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
-  resourceType: 1
-  resourceAmount: 1
+  itemSettings: {fileID: 11400000, guid: 9ea7300e909f940dcb7e479a2cda9c61, type: 2}
   apiProvider: {fileID: 0}
   visualsContainer: {fileID: 260674576016565612}
   infoPlate: {fileID: 4545898990854930615}
